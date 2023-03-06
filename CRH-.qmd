@@ -1,0 +1,2529 @@
+---
+title: "CRH-"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+# AE 01: Bechdel + data visualization
+
+In this mini analysis we work with the data used in the FiveThirtyEight story titled ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/).
+
+This analysis is about the [Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test), a measure of the representation of women in fiction.
+
+## Getting started
+
+### Packages
+
+We start with loading the packages we'll use: **tidyverse** for majority of the analysis and **scales** for pretty plot labels later on.
+
+    library(tidyverse)
+    library(scales)
+
+### Data
+
+The data are stored as a CSV (comma separated values) file in the `data` folder of your repository. Let's read it from there and save it as an object called `bechdel`.
+
+    bechdel <- read_csv("data/bechdel.csv")
+
+### Get to know the data
+
+We can use the `glimpse` function to get an overview (or "glimpse") of the data.
+
+    glimpse(bechdel)
+
+    Rows: 1,615
+    Columns: 17
+    $ title         <chr> "21 & Over", "Dredd 3D", "12 Years a Slave", "2 Guns", "…
+    $ year          <dbl> 2013, 2012, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20…
+    $ gross_2013    <dbl> 67878146, 55078343, 211714070, 208105475, 190040426, 184…
+    $ budget_2013   <dbl> 13000000, 45658735, 20000000, 61000000, 40000000, 225000…
+    $ roi           <dbl> 5.221396, 1.206305, 10.585703, 3.411565, 4.751011, 0.818…
+    $ binary        <chr> "FAIL", "PASS", "FAIL", "FAIL", "FAIL", "FAIL", "FAIL", …
+    $ clean_test    <chr> "notalk", "ok", "notalk", "notalk", "men", "men", "notal…
+    $ imdb          <chr> "tt1711425", "tt1343727", "tt2024544", "tt1272878", "tt0…
+    $ test          <chr> "notalk", "ok-disagree", "notalk-disagree", "notalk", "m…
+    $ budget        <dbl> 1.30e+07, 4.50e+07, 2.00e+07, 6.10e+07, 4.00e+07, 2.25e+…
+    $ domgross      <dbl> 25682380, 13414714, 53107035, 75612460, 95020213, 383624…
+    $ intgross      <dbl> 42195766, 40868994, 158607035, 132493015, 95020213, 1458…
+    $ code          <chr> "2013FAIL", "2012PASS", "2013FAIL", "2013FAIL", "2013FAI…
+    $ domgross_2013 <dbl> 25682380, 13611086, 53107035, 75612460, 95020213, 383624…
+    $ intgross_2013 <dbl> 42195766, 41467257, 158607035, 132493015, 95020213, 1458…
+    $ period_code   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+    $ decade_code   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+
+-   What does each observation (row) in the data set represent?
+
+Each observation represents a **different movie**.
+
+-   How many observations (rows) are in the data set?
+
+There are 1615 movies in the dataset.
+
+-   How many variables (columns) are in the data set?
+
+There are 17 columns in the dataset.
+
+### Variables of interest
+
+The variables we'll focus on are the following:
+
+-   `budget_2013`: Budget in 2013 inflation adjusted dollars.
+
+-   `gross_2013`: Gross (US and international combined) in 2013 inflation adjusted dollars.
+
+-   `roi`: Return on investment, calculated as the ratio of the gross to budget.
+
+-   `clean_test`: Bechdel test result:
+
+    -   `ok` = passes test
+
+    -   `dubious`
+
+    -   `men` = women only talk about men
+
+    -   `notalk` = women don't talk to each other
+
+    -   `nowomen` = fewer than two women
+
+-   `binary`: Bechdel Test PASS vs FAIL binary
+
+We will also use the `year` of release in data prep and `title` of movie to take a deeper look at some outliers.
+
+There are a few other variables in the dataset, but we won't be using them in this analysis.
+
+## Visualizing data with `ggplot2`
+
+**ggplot2** is the package and `ggplot()` is the function in this package that is used to create a plot.
+
+-   `ggplot()` creates the initial base coordinate system, and we will add layers to that base. We first specify the data set we will use with `data = bechdel`.
+
+<!-- -->
+
+    ggplot(data = bechdel)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-base-1.png)
+
+-   The `mapping` argument is paired with an aesthetic (`aes()`), which tells us how the variables in our data set should be mapped to the visual properties of the graph.
+
+<!-- -->
+
+    ggplot(data = bechdel, 
+           mapping = aes(x = budget_2013, y = gross_2013))
+
+![](https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-aesthetic-mapping-1.png)
+
+As we previously mentioned, we often omit the names of the first two arguments in R functions. So you'll often see this written as:
+
+    ggplot(bechdel, 
+           aes(x = budget_2013, y = gross_2013))
+
+![](https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-simplified-call-1.png)
+
+Note that the result is exactly the same.
+
+-   The `geom_xx` function specifies the type of plot we want to use to represent the data. In the code below, we use `geom_point` which creates a plot where each observation is represented by a point.
+
+<!-- -->
+
+    ggplot(bechdel, 
+           aes(x = budget_2013, y = gross_2013)) +
+      geom_point()
+
+    Warning: Removed 15 rows containing missing values (`geom_point()`).
+
+![](https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-point-1.png)
+
+Note that this results in a warning as well. What does the warning mean?
+
+## Budget vs. gross revenue
+
+### Step 1 - Your turn
+
+Modify the following plot to change the color of all points to a different color.
+
+**Tip**
+
+See <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf> for many color options you can use by name in R or use the [hex code](https://en.wikipedia.org/wiki/Web_colors) for a color of your choice.
+
+# AE 02: Visualizing the prognosticators
+
+For all analyses, we'll use the **tidyverse** packages.
+
+    library(tidyverse)
+
+The dataset we will visualize is called `seers`.^[1](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn1)^ It contains summary statistics for all known Groundhog Day forecasters.^[2](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn2)^ Let's `glimpse()` at it.
+
+    # import data using readr::read_csv()
+    seers <- read_csv("data/prognosticators-sum-stats.csv")
+
+    glimpse(seers)
+
+    Rows: 114
+    Columns: 18
+    $ name                  <chr> "Arboretum Annie", "Beardsley Bart", "Bee Cave B…
+    $ forecaster_type       <chr> "Groundhog", "Stuffed Prairie Dog", "Armadillo",…
+    $ forecaster_simple     <chr> "Groundhog", "Other", "Other", "Other", "Other",…
+    $ alive                 <lgl> TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…
+    $ climate_region        <chr> "South", "Northeast", "South", "Southeast", "Sou…
+    $ town                  <chr> "Dallas", "Bridgeport", "Bee Cave", "Buckeye Lak…
+    $ state                 <chr> "TX", "CT", "TX", "OH", "TX", "TX", "AL", "AL", …
+    $ preds_n               <dbl> 3, 10, 11, 6, 5, 1, 1, 12, 2, 4, 12, 8, 1, 38, 4…
+    $ preds_long_winter     <dbl> 1, 1, 2, 4, 3, 1, 1, 6, 2, 2, 7, 7, 0, 11, 4, 2,…
+    $ preds_long_winter_pct <dbl> 0.3333333, 0.1000000, 0.1818182, 0.6666667, 0.60…
+    $ preds_correct         <dbl> 2, 7, 7, 2, 2, 0, 0, 4, 0, 2, 2, 1, 0, 21, 0, 2,…
+    $ preds_rate            <dbl> 0.6666667, 0.7000000, 0.6363636, 0.3333333, 0.40…
+    $ temp_mean             <dbl> 50.18333, 31.02000, 51.42273, 54.35833, 52.44000…
+    $ temp_hist             <dbl> 51.32000, 29.47633, 50.96455, 52.03056, 51.12667…
+    $ temp_sd               <dbl> 3.909048, 4.118598, 3.909048, 3.713808, 3.909048…
+    $ precip_mean           <dbl> 2.768333, 3.031000, 2.633636, 3.721667, 2.721000…
+    $ precip_hist           <dbl> 2.5588889, 3.0695000, 2.5610303, 3.7380000, 2.54…
+    $ precip_sd             <dbl> 0.9097207, 0.9641827, 0.9097207, 1.4612711, 0.90…
+
+The variables are:
+
+-   `name` - name of the prognosticator
+
+-   `forecaster_type` - what kind of animal or thing is the prognosticator?
+
+-   `forecaster_simple` - a simplified version that lumps together the least-frequently appearing types of prognosticators
+
+-   `alive` - is the prognosticator an animate (alive) being?^[3](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn3)^
+
+-   `climate_region` - the [NOAA climate region](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/regional/mapping) in which the prognosticator is located.
+
+-   `town` - self-explanatory
+
+-   `state` - state (or territory) where prognosticator is located
+
+-   `preds_n` - number of predictions in the database
+
+-   `preds_long_winter` - number of predictions for a "Late Winter" (as opposed to "Early Spring")
+
+-   `preds_long_winter_pct` - percentage of predictions for a "Late Winter"
+
+-   `preds_correct` - number of correct predictions^[4](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn4)^
+
+-   `preds_rate` - proportion of predictions that are correct
+
+-   `temp_mean` - average temperature (in Fahrenheit) in February and March in the climate region across all prognostication years
+
+-   `temp_hist` - average of the rolling 15-year historic average temperature in February and March across all prognostication years
+
+-   `temp_sd` - standard deviation of average February and March temperatures across all prognostication years
+
+-   `precip_mean` - average amount of precipitation in February and March across all prognostication years (measured in rainfall inches)
+
+-   `precip_hist` average of the rolling 15-year historic average precipitation in February and March across all prognostication years
+
+-   `precip_sd` - standard deviation of average February and March precipitation across all prognostication years
+
+# Visualizing prediction success rate - Demo
+
+## Single variable
+
+Create visualizations of the distribution of `preds_rate` for the prognosticators.
+
+1.  Make a histogram. Set an appropriate binwidth.
+
+<!-- -->
+
+    ggplot(seers, aes(x = preds_rate)) +
+      geom_histogram(binwidth = 0.02)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-1.png)
+
+2.  Make a boxplot.
+
+<!-- -->
+
+    ggplot(seers, aes(x = preds_rate)) +
+      geom_boxplot()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/boxplot-preds-rate-1.png)
+
+3.  Based on these, determine if each of the following statements about the shape of the distribution is true or false.
+
+    -   The distribution of prediction success rate in this sample is left skewed. **FALSE**
+
+    -   The distribution of prediction success rate in this sample is unimodal. **FALSE**
+
+## Two variables
+
+Create visualizations of the distribution of `preds_rate` by `alive` (whether or not the prognosticator is alive).
+
+4.  Make a single histogram. Set an appropriate binwidth.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = preds_rate, fill = alive)
+    ) +
+      geom_histogram(binwidth = 0.02, alpha = 0.5, color = "black")
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-alive-1.png)
+
+5.  Use multiple histograms via faceting, one for each type. Set an appropriate binwidth, add color as you see fit, and turn off legends if not needed.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = preds_rate, fill = alive)
+    ) +
+      geom_histogram(binwidth = 0.02, show.legend = FALSE) +
+      facet_wrap(vars(alive), ncol = 1)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-alive-facet-1.png)
+
+6.  Use side-by-side box plots. Add color as you see fit and turn off legends if not needed.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, fill = alive)
+    ) +
+      geom_boxplot(show.legend = FALSE)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/boxplot-preds-rate-alive-1.png)
+
+7.  Use density plots. Add color as you see fit.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = preds_rate, fill = alive)
+    ) +
+      geom_density(alpha = 0.5)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/density-preds-rate-alive-1.png)
+
+8.  Use violin plots. Add color as you see fit and turn off legends if not needed.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, fill = alive)
+    ) +
+      geom_violin(alpha = 0.5, show.legend = FALSE)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/violin-preds-rate-alive-1.png)
+
+9.  Make a jittered scatter plot. Add color as you see fit and turn off legends if not needed.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, color = alive)
+    ) +
+      geom_jitter(show.legend = FALSE)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/jitter-preds-rate-alive-1.png)
+
+10. Use beeswarm plots. Add color as you see fit and turn off legends if not needed.
+
+<!-- -->
+
+    library(ggbeeswarm)
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, color = alive)
+    ) +
+      geom_beeswarm(show.legend = FALSE)
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/beeswarm-preds-rate-alive-1.png)
+
+11. Use multiple geoms on a single plot. Be deliberate about the order of plotting. Change the theme and the color scale of the plot. Finally, add informative labels.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, color = alive)
+    ) +
+      geom_beeswarm(show.legend = FALSE) +
+      geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+      scale_color_viridis_d(option = "D", end = 0.8) +
+      scale_y_continuous(labels = scales::label_percent()) +
+      theme_minimal() +
+      labs(
+        x = "Is the prognosticator alive?",
+        y = "Prediction accuracy for late winter/early spring",
+        title = "Accuracy of prognosticators predicting the coming season",
+        subtitle = "By living status of prognosticator"
+      )
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/multi-geoms-1.png)
+
+## Multiple variables
+
+12. Facet the plot you created in the previous exercise by `forecaster_simple`. Adjust labels accordingly.
+
+<!-- -->
+
+    ggplot(
+      seers,
+      aes(x = alive, y = preds_rate, color = alive)
+    ) +
+      geom_beeswarm(show.legend = FALSE) +
+      geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+      scale_color_viridis_d(option = "D", end = 0.8) +
+      scale_y_continuous(labels = scales::label_percent()) +
+      facet_wrap(vars(forecaster_simple)) +
+      theme_minimal() +
+      labs(
+        x = "Is the prognosticator alive?",
+        y = "Prediction accuracy for late winter/early spring",
+        title = "Accuracy of prognosticators predicting the coming season",
+        subtitle = "By type and living status of prognosticator"
+      )
+
+![](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/multi-geoms-facet-1.png)
+
+Before you continue, let's turn off all warnings the code chunks generate and resize all figures. We'll do this by editing the YAML.
+
+## Visualizing other variables - Your turn!
+
+13. Pick a single categorical variable from the data set and make a bar plot of its distribution.
+
+<!-- -->
+
+    # add code here
+
+14. Pick two categorical variables and make a visualization to visualize the relationship between the two variables. Along with your code and output, provide an interpretation of the visualization.
+
+<!-- -->
+
+    # add code here
+
+Interpretation goes here...
+
+15. Make another plot that uses at least three variables. At least one should be numeric and at least one categorical. In 1-2 sentences, describe what the plot shows about the relationships between the variables you plotted. Don't forget to label your code chunk.
+
+<!-- -->
+
+    # add code here
+
+Interpretation goes here...
+
+## **Footnotes**
+
+1.  I would prefer [`prognosticators`](https://www.groundhog.org/prognostication), but I had way too many typos preparing these materials to make you all use it.[↩︎](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref1)
+
+2.  Source: [Countdown to Groundhog Day](https://countdowntogroundhogday.com/groundhogs-from-around-the-world). Application exercise inspired by [Groundhogs Do Not Make Good Meteorologists](https://fivethirtyeight.com/features/groundhogs-do-not-make-good-meteorologists/) originally published on FiveThirtyEight.[↩︎](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref2)
+
+3.  Prognosticators labeled as Animatronic/Puppet/Statue/Stuffed/Taxidermied are classified as not alive.[↩︎](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref3)
+
+4.  We adopt the same definition as FiveThirtyEight. An "Early Spring" is defined as any year in which the average temperature in either February or March was higher than the historic average. A "Long Winter" was when the average temperature in both months was lower than or the same as the historical average.[↩︎](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref4)
+
+# AE 03: Wrangling professor evaluations
+
+To demonstrate data wrangling we will use `evals`. It contains anonymized information on end-of-semester student evaluations for 463 courses taught by a sample of 94 professors from the University of Texas at Austin.^[1](https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fn1)^
+
+    library(tidyverse)
+
+    evals <- read_csv("data/course-evals.csv")
+
+The data frame has over 400 observations (rows), 463 observations to be exact, so we will **not** view the entire data frame. Instead we'll use the commands below to help us explore the data.
+
+    glimpse(evals)
+
+    Rows: 463
+    Columns: 23
+    $ course_id     <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…
+    $ prof_id       <dbl> 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5,…
+    $ score         <dbl> 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4…
+    $ rank          <chr> "tenure track", "tenure track", "tenure track", "tenure …
+    $ ethnicity     <chr> "minority", "minority", "minority", "minority", "not min…
+    $ gender        <chr> "female", "female", "female", "female", "male", "male", …
+    $ language      <chr> "english", "english", "english", "english", "english", "…
+    $ age           <dbl> 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, …
+    $ cls_perc_eval <dbl> 55.81395, 68.80000, 60.80000, 62.60163, 85.00000, 87.500…
+    $ cls_did_eval  <dbl> 24, 86, 76, 77, 17, 35, 39, 55, 111, 40, 24, 24, 17, 14,…
+    $ cls_students  <dbl> 43, 125, 125, 123, 20, 40, 44, 55, 195, 46, 27, 25, 20, …
+    $ cls_level     <chr> "upper", "upper", "upper", "upper", "upper", "upper", "u…
+    $ cls_profs     <chr> "single", "single", "single", "single", "multiple", "mul…
+    $ cls_credits   <chr> "multi credit", "multi credit", "multi credit", "multi c…
+    $ bty_f1lower   <dbl> 5, 5, 5, 5, 4, 4, 4, 5, 5, 2, 2, 2, 2, 2, 2, 2, 2, 7, 7,…
+    $ bty_f1upper   <dbl> 7, 7, 7, 7, 4, 4, 4, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9,…
+    $ bty_f2upper   <dbl> 6, 6, 6, 6, 2, 2, 2, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9,…
+    $ bty_m1lower   <dbl> 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7,…
+    $ bty_m1upper   <dbl> 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 6, 6,…
+    $ bty_m2upper   <dbl> 6, 6, 6, 6, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6,…
+    $ bty_avg       <dbl> 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, …
+    $ pic_outfit    <chr> "not formal", "not formal", "not formal", "not formal", …
+    $ pic_color     <chr> "color", "color", "color", "color", "color", "color", "c…
+
+    names(evals)
+
+     [1] "course_id"     "prof_id"       "score"         "rank"         
+     [5] "ethnicity"     "gender"        "language"      "age"          
+     [9] "cls_perc_eval" "cls_did_eval"  "cls_students"  "cls_level"    
+    [13] "cls_profs"     "cls_credits"   "bty_f1lower"   "bty_f1upper"  
+    [17] "bty_f2upper"   "bty_m1lower"   "bty_m1upper"   "bty_m2upper"  
+    [21] "bty_avg"       "pic_outfit"    "pic_color"    
+
+    head(evals)
+
+    # A tibble: 6 × 23
+      course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+          <dbl>   <dbl> <dbl> <chr>     <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+    1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+    2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+    3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+    4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+    5         5       2   4.6 tenured   not mi… male   english    59    85        17
+    6         6       2   4.3 tenured   not mi… male   english    59    87.5      35
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+The `head()` function returns "A tibble: 6 x 23" and then the first six rows of the `evals` data.
+
+# Tibble vs. data frame
+
+A **tibble** is an opinionated version of the `R` data frame. In other words, all tibbles are data frames, but not all data frames are tibbles!
+
+There are two main differences between a tibble and a data frame:
+
+1.  When you print a tibble, the first ten rows and all of the columns that fit on the screen will display, along with the type of each column.
+
+    Let's look at the differences in the output when we type `evals` (tibble) in the console versus typing `cars` (data frame) in the console.
+
+2.  Second, tibbles are somewhat more strict than data frames when it comes to subsetting data. You will get a warning message if you try to access a variable that doesn't exist in a tibble. You will get `NULL` if you try to access a variable that doesn't exist in a data frame.
+
+<!-- -->
+
+    evals$apple
+
+    Warning: Unknown or uninitialised column: `apple`.
+
+    NULL
+
+    cars$apple
+
+    NULL
+
+# Data wrangling with `dplyr`
+
+**dplyr** is the primary package in the tidyverse for data wrangling. [Click here](https://dplyr.tidyverse.org/) for the dplyr reference page. [Click here](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf) for the data transformation cheatsheet.
+
+Quick summary of key dplyr functions^[2](https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fn2)^:
+
+**Rows:**
+
+-   `filter()`:chooses rows based on column values.
+
+-   `slice()`: chooses rows based on location.
+
+-   `arrange()`: changes the order of the rows
+
+-   `sample_n()`: take a random subset of the rows
+
+**Columns:**
+
+-   `select()`: changes whether or not a column is included.
+
+-   `rename()`: changes the name of columns.
+
+-   `mutate()`: changes the values of columns and creates new columns.
+
+**Groups of rows:**
+
+-   `summarize()`: collapses a group into a single row.
+
+-   `count()`: count unique values of one or more variables.
+
+-   `group_by()`: perform calculations separately for each value of a variable
+
+## `select()`
+
+-   Demo: Make a data frame that only contains the variables `score` and `cls_students`.
+
+<!-- -->
+
+    evals |>
+      select(score, cls_students)
+
+    # A tibble: 463 × 2
+       score cls_students
+       <dbl>        <dbl>
+     1   4.7           43
+     2   4.1          125
+     3   3.9          125
+     4   4.8          123
+     5   4.6           20
+     6   4.3           40
+     7   2.8           44
+     8   4.1           55
+     9   3.4          195
+    10   4.5           46
+    # … with 453 more rows
+
+-   Demo: Make a data frame that keeps every variable except `cls_students`.
+
+<!-- -->
+
+    evals |>
+      select(-cls_students)
+
+    # A tibble: 463 × 22
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1         1       1   4.7 tenure … minori… female english    36    55.8      24
+     2         2       1   4.1 tenure … minori… female english    36    68.8      86
+     3         3       1   3.9 tenure … minori… female english    36    60.8      76
+     4         4       1   4.8 tenure … minori… female english    36    62.6      77
+     5         5       2   4.6 tenured  not mi… male   english    59    85        17
+     6         6       2   4.3 tenured  not mi… male   english    59    87.5      35
+     7         7       2   2.8 tenured  not mi… male   english    59    88.6      39
+     8         8       3   4.1 tenured  not mi… male   english    51   100        55
+     9         9       3   3.4 tenured  not mi… male   english    51    56.9     111
+    10        10       4   4.5 tenured  not mi… female english    40    87.0      40
+    # … with 453 more rows, 12 more variables: cls_level <chr>, cls_profs <chr>,
+    #   cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>, bty_f2upper <dbl>,
+    #   bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>, bty_avg <dbl>,
+    #   pic_outfit <chr>, pic_color <chr>, and abbreviated variable names
+    #   ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+-   Demo: Make a data frame that includes all variables between `score` through `age` (inclusive).
+
+<!-- -->
+
+    evals |>
+      select(score:age)
+
+    # A tibble: 463 × 6
+       score rank         ethnicity    gender language   age
+       <dbl> <chr>        <chr>        <chr>  <chr>    <dbl>
+     1   4.7 tenure track minority     female english     36
+     2   4.1 tenure track minority     female english     36
+     3   3.9 tenure track minority     female english     36
+     4   4.8 tenure track minority     female english     36
+     5   4.6 tenured      not minority male   english     59
+     6   4.3 tenured      not minority male   english     59
+     7   2.8 tenured      not minority male   english     59
+     8   4.1 tenured      not minority male   english     51
+     9   3.4 tenured      not minority male   english     51
+    10   4.5 tenured      not minority female english     40
+    # … with 453 more rows
+
+-   Demo: Use the `select` helper `contains()` to make a data frame that includes the variables associated with the class, i.e., contains the string `"cls\_"` in the name.
+
+<!-- -->
+
+    evals |>
+      select(contains("cls_"))
+
+    # A tibble: 463 × 6
+       cls_perc_eval cls_did_eval cls_students cls_level cls_profs cls_credits 
+               <dbl>        <dbl>        <dbl> <chr>     <chr>     <chr>       
+     1          55.8           24           43 upper     single    multi credit
+     2          68.8           86          125 upper     single    multi credit
+     3          60.8           76          125 upper     single    multi credit
+     4          62.6           77          123 upper     single    multi credit
+     5          85             17           20 upper     multiple  multi credit
+     6          87.5           35           40 upper     multiple  multi credit
+     7          88.6           39           44 upper     multiple  multi credit
+     8         100             55           55 upper     single    multi credit
+     9          56.9          111          195 upper     single    multi credit
+    10          87.0           40           46 upper     single    multi credit
+    # … with 453 more rows
+
+## The pipe
+
+Before working with more data wrangling functions, let's formally introduce the pipe. The **pipe**, `|>`, is an operator (a tool) for passing information from one process to another. We will use `|>` mainly in data pipelines to pass the output of the previous line of code as the first input of the next line of code.
+
+When reading code "in English", say "and then" whenever you see a pipe.
+
+-   **Your turn (4 minutes):** Run the following chunk and observe its output. Then, come up with a different way of obtaining the same output.
+
+<!-- -->
+
+    evals |>
+      select(score, rank) |>
+      head()
+
+    # A tibble: 6 × 2
+      score rank        
+      <dbl> <chr>       
+    1   4.7 tenure track
+    2   4.1 tenure track
+    3   3.9 tenure track
+    4   4.8 tenure track
+    5   4.6 tenured     
+    6   4.3 tenured     
+
+## `slice()`
+
+-   Demo: Display the first five rows of the `evals` data frame.
+
+<!-- -->
+
+    evals |>
+      slice(1:5)
+
+    # A tibble: 5 × 23
+      course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+          <dbl>   <dbl> <dbl> <chr>     <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+    1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+    2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+    3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+    4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+    5         5       2   4.6 tenured   not mi… male   english    59    85        17
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+    # with slice_head()
+    evals |>
+      slice_head(n = 5)
+
+    # A tibble: 5 × 23
+      course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+          <dbl>   <dbl> <dbl> <chr>     <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+    1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+    2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+    3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+    4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+    5         5       2   4.6 tenured   not mi… male   english    59    85        17
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+-   Demo: Display the last two rows of the `evals` data frame.
+
+<!-- -->
+
+    evals |>
+      slice((n() - 1):n())
+
+    # A tibble: 2 × 23
+      course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+          <dbl>   <dbl> <dbl> <chr>     <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+    1       462      94   4.4 tenure t… minori… female non-en…    42    81.8      54
+    2       463      94   4.1 tenure t… minori… female non-en…    42    80        28
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+    # with slice_tail()
+    evals |>
+      slice_tail(n = 2)
+
+    # A tibble: 2 × 23
+      course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+          <dbl>   <dbl> <dbl> <chr>     <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+    1       462      94   4.4 tenure t… minori… female non-en…    42    81.8      54
+    2       463      94   4.1 tenure t… minori… female non-en…    42    80        28
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+## `arrange()`
+
+-   Demo: Let's arrange the data by score, so the courses with the lowest scores will be at the top of the data frame.
+
+<!-- -->
+
+    evals |>
+      arrange(score)
+
+    # A tibble: 463 × 23
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1       162      30   2.3 tenure … not mi… female english    41    83.3      10
+     2       335      68   2.4 tenured  not mi… male   english    60    71.9      23
+     3        40       8   2.5 tenured  not mi… female english    51    80        24
+     4       337      68   2.5 tenured  not mi… male   english    60    62.5      10
+     5       329      66   2.7 tenured  not mi… male   english    64    81.8      18
+     6       376      76   2.7 tenured  minori… female english    43    48.9      93
+     7         7       2   2.8 tenured  not mi… male   english    59    88.6      39
+     8       185      34   2.8 tenure … minori… female english    47    92.3      24
+     9       434      88   2.8 tenured  not mi… male   english    62    40.9      61
+    10        79      15   2.9 tenure … not mi… female english    37    82.1      23
+    # … with 453 more rows, 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+-   Demo: Now let's arrange the data by descending score, so the evals with the highest scores will be at the top.
+
+<!-- -->
+
+    evals |>
+      arrange(desc(score))
+
+    # A tibble: 463 × 23
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1        54      10     5 teaching not mi… male   english    47    90.9      10
+     2        57      10     5 teaching not mi… male   english    47    83.3      15
+     3        59      10     5 teaching not mi… male   english    47    80        16
+     4       103      19     5 tenured  not mi… female english    46    93.3      14
+     5       108      19     5 tenured  not mi… female english    46   100        15
+     6       349      71     5 teaching minori… male   english    50    90.9      20
+     7       356      71     5 teaching minori… male   english    50    95.2      20
+     8       406      82     5 tenured  not mi… male   english    57    40         6
+     9       420      85     5 teaching not mi… male   english    58   100        21
+    10       421      85     5 teaching not mi… male   english    58    85.7      18
+    # … with 453 more rows, 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+-   **Your turn (5 minutes):** Create a data frame that only includes the evaluation score (`score`), faculty rank (`rank`), and average beauty rating of the professor (`bty_avg`) for the course with the highest evaluation score. What is the average beauty rating (`bty_avg`) for this professor?
+
+<!-- -->
+
+    evals |>
+      select(score, rank, bty_avg) |>
+      arrange(desc(score), desc(bty_avg)) |>
+      slice(1)
+
+    # A tibble: 1 × 3
+      score rank     bty_avg
+      <dbl> <chr>      <dbl>
+    1     5 teaching    7.83
+
+## `filter()`
+
+-   Demo: Filter the data frame by selecting the rows where the faculty is on the teaching-track.
+
+<!-- -->
+
+    evals |>
+      filter(rank == "teaching")
+
+    # A tibble: 102 × 23
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1        50      10   4   teaching not mi… male   english    47    84.2      16
+     2        51      10   4.3 teaching not mi… male   english    47    75        12
+     3        52      10   4.4 teaching not mi… male   english    47    93.3      14
+     4        53      10   4.5 teaching not mi… male   english    47    95.7      22
+     5        54      10   5   teaching not mi… male   english    47    90.9      10
+     6        55      10   4.9 teaching not mi… male   english    47    58.6      17
+     7        56      10   4.6 teaching not mi… male   english    47    76.2      16
+     8        57      10   5   teaching not mi… male   english    47    83.3      15
+     9        58      10   4.7 teaching not mi… male   english    47    84.2      16
+    10        59      10   5   teaching not mi… male   english    47    80        16
+    # … with 92 more rows, 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+-   Demo: We can also filter using more than one condition. Here we select all rows where the faculty is teaching-track and the evaluation score is greater than 3.5
+
+<!-- -->
+
+    evals |>
+      filter(rank == "teaching", score > 3.5)
+
+    # A tibble: 87 × 23
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1        50      10   4   teaching not mi… male   english    47    84.2      16
+     2        51      10   4.3 teaching not mi… male   english    47    75        12
+     3        52      10   4.4 teaching not mi… male   english    47    93.3      14
+     4        53      10   4.5 teaching not mi… male   english    47    95.7      22
+     5        54      10   5   teaching not mi… male   english    47    90.9      10
+     6        55      10   4.9 teaching not mi… male   english    47    58.6      17
+     7        56      10   4.6 teaching not mi… male   english    47    76.2      16
+     8        57      10   5   teaching not mi… male   english    47    83.3      15
+     9        58      10   4.7 teaching not mi… male   english    47    84.2      16
+    10        59      10   5   teaching not mi… male   english    47    80        16
+    # … with 77 more rows, 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+We can do more complex tasks using logical operators:
+
+| operator      | definition                   |
+|:--------------|:-----------------------------|
+| `<`           | is less than?                |
+| `<=`          | is less than or equal to?    |
+| `>`           | is greater than?             |
+| `>=`          | is greater than or equal to? |
+| `==`          | is exactly equal to?         |
+| `!=`          | is not equal to?             |
+| `x & y`       | is x AND y?                  |
+| `x | y`       | is x OR y?                   |
+| `is.na(x)`    | is x NA?                     |
+| `!is.na(x)`   | is x not NA?                 |
+| `x %in% y`    | is x in y?                   |
+| `!(x %in% y)` | is x not in y?               |
+| `!x`          | is not x?                    |
+
+The final operator only makes sense if `x` is logical (TRUE / FALSE).
+
+-   **Your turn (4 minutes):** Describe what the code is doing in words.
+
+<!-- -->
+
+    evals |>
+      filter(
+        rank %in% c("tenure track", "tenure"),
+        score > 3.5, bty_avg > 6
+      )
+
+    # A tibble: 20 × 23
+       course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+           <dbl>   <dbl> <dbl> <chr>    <chr>   <chr>  <chr>   <dbl>   <dbl>   <dbl>
+     1        18       5   4.8 tenure … not mi… female english    31    87.5      42
+     2        19       5   4.6 tenure … not mi… female english    31    90.9      40
+     3        20       5   4.6 tenure … not mi… female english    31    79.2      38
+     4        21       5   4.9 tenure … not mi… female english    31    88.9      40
+     5        22       5   4.6 tenure … not mi… female english    31    88.1      52
+     6        23       5   4.5 tenure … not mi… female english    31    56.3      49
+     7       140      25   4.8 tenure … not mi… female english    34    76.9      20
+     8       141      25   4.1 tenure … not mi… female english    34    82.5      33
+     9       238      45   4.9 tenure … not mi… male   english    33    96.8      30
+    10       240      45   3.7 tenure … not mi… male   english    33    86.7      13
+    11       289      54   4.1 tenure … not mi… male   english    34    80        16
+    12       290      54   3.6 tenure … not mi… male   english    34    57.1      20
+    13       440      89   3.6 tenure … minori… female english    35    33.3      20
+    14       441      89   3.7 tenure … minori… female english    35    39.8      43
+    15       454      93   4.5 tenure … not mi… male   english    32    74.2      98
+    16       455      93   4.5 tenure … not mi… male   english    32    87.4     111
+    17       456      93   4.5 tenure … not mi… male   english    32    72.9      62
+    18       457      93   4.6 tenure … not mi… male   english    32    75.2      76
+    19       458      93   4.1 tenure … not mi… male   english    32    42.9       9
+    20       459      93   4.5 tenure … not mi… male   english    32    60.5      52
+    # … with 13 more variables: cls_students <dbl>, cls_level <chr>,
+    #   cls_profs <chr>, cls_credits <chr>, bty_f1lower <dbl>, bty_f1upper <dbl>,
+    #   bty_f2upper <dbl>, bty_m1lower <dbl>, bty_m1upper <dbl>, bty_m2upper <dbl>,
+    #   bty_avg <dbl>, pic_outfit <chr>, pic_color <chr>, and abbreviated variable
+    #   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+## `count()`
+
+-   Demo: Create a frequency table of the ethnicity of the evaluated professors.
+
+<!-- -->
+
+    evals |>
+      count(ethnicity)
+
+    # A tibble: 2 × 2
+      ethnicity        n
+      <chr>        <int>
+    1 minority        64
+    2 not minority   399
+
+-   Demo: Which faculty rank had the fewest number of evals? How many evals were there for that group?
+
+<!-- -->
+
+    evals |>
+      count(rank) |>
+      filter(n == min(n))
+
+    # A tibble: 1 × 2
+      rank         n
+      <chr>    <int>
+    1 teaching   102
+
+-   **Your turn (5 minutes):** Which type of faculty (based on rank, gender, and ethnicity) is most highly represented in this dataset? How many courses did they teach in this sample?
+
+<!-- -->
+
+    evals |>
+      count(rank, gender, ethnicity) |>
+      filter(n == max(n))
+
+    # A tibble: 1 × 4
+      rank    gender ethnicity        n
+      <chr>   <chr>  <chr>        <int>
+    1 tenured male   not minority   162
+
+## `mutate()`
+
+Use `mutate()` to create a new variable.
+
+-   Demo: In the code chunk below, we calculate difference in the average beauty ratings by gender of the rater (`bty_f*` vs `bty_m*`).
+
+<!-- -->
+
+    evals |>
+      mutate(
+        bty_avg_f = (bty_f1lower + bty_f1upper + bty_f2upper) / 3,
+        bty_avg_m = (bty_m1lower + bty_m1upper + bty_m2upper) / 3,
+        bty_avg_diff = bty_avg_f - bty_avg_m
+      ) |>
+      select(score, bty_avg_f, bty_avg_m, bty_avg_diff)
+
+    # A tibble: 463 × 4
+       score bty_avg_f bty_avg_m bty_avg_diff
+       <dbl>     <dbl>     <dbl>        <dbl>
+     1   4.7      6         4           2    
+     2   4.1      6         4           2    
+     3   3.9      6         4           2    
+     4   4.8      6         4           2    
+     5   4.6      3.33      2.67        0.667
+     6   4.3      3.33      2.67        0.667
+     7   2.8      3.33      2.67        0.667
+     8   4.1      4         2.67        1.33 
+     9   3.4      4         2.67        1.33 
+    10   4.5      3.67      2.67        1    
+    # … with 453 more rows
+
+-   **Your turn (4 minutes):** Create a new variable to calculate the percentage of evals for each faculty rank. What percentage of evals were for teaching-track faculty?
+
+<!-- -->
+
+    evals |>
+      count(rank) |>
+      mutate(perc = n / sum(n) * 100)
+
+    # A tibble: 3 × 3
+      rank             n  perc
+      <chr>        <int> <dbl>
+    1 teaching       102  22.0
+    2 tenure track   108  23.3
+    3 tenured        253  54.6
+
+## `summarize()`
+
+`summarize()` collapses the rows into summary statistics and removes columns irrelevant to the calculation.
+
+Be sure to name your columns!
+
+    evals |>
+      summarize(mean_score = mean(score))
+
+    # A tibble: 1 × 1
+      mean_score
+           <dbl>
+    1         NA
+
+**Question: Why did this code return `NA`?**
+
+Let's fix it!
+
+    evals |>
+      summarize(mean_score = mean(score, na.rm = TRUE))
+
+    # A tibble: 1 × 1
+      mean_score
+           <dbl>
+    1       4.18
+
+## `group_by()`
+
+`group_by()` is used for grouped operations. It's very powerful when paired with `summarize()` to calculate summary statistics by group.
+
+Here we find the mean and standard deviation of evaluation scores for each professor in the sample.
+
+    evals |>
+      group_by(prof_id) |>
+      summarize(
+        mean_score = mean(score, na.rm = TRUE),
+        sd_score = sd(score, na.rm = TRUE)
+      )
+
+    # A tibble: 94 × 3
+       prof_id mean_score sd_score
+         <dbl>      <dbl>    <dbl>
+     1       1       4.38    0.443
+     2       2       3.9     0.964
+     3       3       3.75    0.495
+     4       4       4.3     0.321
+     5       5       4.67    0.151
+     6       6       4.63    0.180
+     7       7       4.1     0.354
+     8       8       4       0.766
+     9       9       4.61    0.177
+    10      10       4.64    0.344
+    # … with 84 more rows
+
+-   **Your turn (4 minutes):** What is the median evaluation score for each faculty rank? *Which type of faculty has the lowest median evaluation score?*
+
+<!-- -->
+
+    evals |>
+      group_by(rank) |>
+      summarize(
+        med_score = median(score, na.rm = TRUE)
+      )
+
+    # A tibble: 3 × 2
+      rank         med_score
+      <chr>            <dbl>
+    1 teaching          4.4 
+    2 tenure track      4.35
+    3 tenured           4.2 
+
+# Additional Practice
+
+1.  Create a new dataset that only contains evals that do not have a missing evaluation score. Include the columns `prof_id`, `score`, `rank`, `age`, `bty_avg`, and `bty_avg_diff` (the difference in the average beauty score for female and male raters). *Hint: Note you may need to use `mutate()` to make one or more of these variables.*
+
+<!-- -->
+
+    evals |>
+      # drop rows with NAs for score
+      drop_na(score) |>
+      # create required variable
+      mutate(
+        bty_avg_f = (bty_f1lower + bty_f1upper + bty_f2upper) / 3,
+        bty_avg_m = (bty_m1lower + bty_m1upper + bty_m2upper) / 3,
+        bty_avg_diff = bty_avg_f - bty_avg_m
+      ) |>
+      # keep only requested columns
+      select(prof_id, score, rank, age, bty_avg, bty_avg_diff)
+
+    # A tibble: 449 × 6
+       prof_id score rank           age bty_avg bty_avg_diff
+         <dbl> <dbl> <chr>        <dbl>   <dbl>        <dbl>
+     1       1   4.7 tenure track    36    5           2    
+     2       1   4.1 tenure track    36    5           2    
+     3       1   3.9 tenure track    36    5           2    
+     4       1   4.8 tenure track    36    5           2    
+     5       2   4.6 tenured         59    3           0.667
+     6       2   4.3 tenured         59    3           0.667
+     7       2   2.8 tenured         59    3           0.667
+     8       3   4.1 tenured         51    3.33        1.33 
+     9       3   3.4 tenured         51    3.33        1.33 
+    10       4   4.5 tenured         40    3.17        1    
+    # … with 439 more rows
+
+2.  For each professor (uniquely identified by `prof_id`), use a `group_by()` paired with `summarize()` to find the sample size, mean, and standard deviation of evaluation scores. Then include only the top 5 and bottom 5 professors in terms of mean scores in the final data frame.
+
+<!-- -->
+
+    # calculate requested summary statistics
+    prof_scores <- evals |>
+      # drop rows with NAs for score
+      drop_na(score) |>
+      group_by(prof_id) |>
+      summarize(
+        mean_score = mean(score, na.rm = TRUE),
+        sd_score = sd(score, na.rm = TRUE),
+        sample_size = n()
+      ) |>
+      # sort rows by mean_score from high to low
+      arrange(desc(mean_score))
+
+    # need to get top 5 and bottom 5 rows for each in a single data frame
+    bind_rows(
+      slice_head(.data = prof_scores, n = 5),
+      slice_tail(.data = prof_scores, n = 5)
+    )
+
+    # A tibble: 10 × 4
+       prof_id mean_score sd_score sample_size
+         <dbl>      <dbl>    <dbl>       <int>
+     1      85       4.87   0.150            7
+     2      73       4.82   0.0447           5
+     3      71       4.81   0.179           10
+     4      52       4.74   0.113            7
+     5      50       4.73   0.163            6
+     6      15       3.18   0.189            4
+     7      60       3.13   0.208            3
+     8      69       3     NA                1
+     9      68       2.67   0.379            3
+    10      30       2.3   NA                1
+
+## **Footnotes**
+
+1.  Source: Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors' pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, 2005 and [OpenIntro](https://www.openintro.org/data/index.php?data=evals).[↩︎](https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fnref1)
+
+2.  From [dplyr vignette](https://dplyr.tidyverse.org/articles/dplyr.html)[↩︎](https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fnref2)
+
+# AE 04: Joining prognosticators
+
+    library(tidyverse)
+    library(scales)
+
+    seers <- read_csv("data/prognosticators.csv")
+    weather <- read_csv("data/weather-region.csv")
+
+## Working with multiple data frames
+
+Often instead of being provided the data you need for your analysis in a single data frame, you will need to bring information from multiple datasets together into a data frame yourself. These datasets will be linked to each other via a column (usually an identifier, something that links the two datasets together) that you can use to join them together.
+
+There are many possible types of joins. All have the format `something_join(x, y)`.
+
+    superheroes <- tribble(
+      ~name, ~alignment, ~gender, ~publisher,
+      "Magneto", "bad", "male", "Marvel",
+      "Batman", "good", "male", "DC",
+      "Sabrina", "good", "female", "Archie Comics"
+    )
+
+    publishers <- tribble(
+      ~publisher, ~yr_founded,
+      "DC", 1934,
+      "Marvel", 1939,
+      "Image", 1992
+    )
+
+    superheroes
+
+    # A tibble: 3 × 4
+      name    alignment gender publisher    
+      <chr>   <chr>     <chr>  <chr>        
+    1 Magneto bad       male   Marvel       
+    2 Batman  good      male   DC           
+    3 Sabrina good      female Archie Comics
+
+    publishers
+
+    # A tibble: 3 × 2
+      publisher yr_founded
+      <chr>          <dbl>
+    1 DC              1934
+    2 Marvel          1939
+    3 Image           1992
+
+We will demonstrate each of the joins on these small, toy datasets.
+
+### `inner_join()`: join all rows from `x` where there are matching values in `y`
+
+    inner_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 2 × 5
+      name    alignment gender publisher yr_founded
+      <chr>   <chr>     <chr>  <chr>          <dbl>
+    1 Magneto bad       male   Marvel          1939
+    2 Batman  good      male   DC              1934
+
+### `left_join()`: include all rows from `x`
+
+    left_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 3 × 5
+      name    alignment gender publisher     yr_founded
+      <chr>   <chr>     <chr>  <chr>              <dbl>
+    1 Magneto bad       male   Marvel              1939
+    2 Batman  good      male   DC                  1934
+    3 Sabrina good      female Archie Comics         NA
+
+### `right_join()`: include all rows from `y`
+
+    right_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 3 × 5
+      name    alignment gender publisher yr_founded
+      <chr>   <chr>     <chr>  <chr>          <dbl>
+    1 Magneto bad       male   Marvel          1939
+    2 Batman  good      male   DC              1934
+    3 <NA>    <NA>      <NA>   Image           1992
+
+### `full_join()`: include all rows in `x` or `y` (use this one sparingly!!)
+
+    full_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 4 × 5
+      name    alignment gender publisher     yr_founded
+      <chr>   <chr>     <chr>  <chr>              <dbl>
+    1 Magneto bad       male   Marvel              1939
+    2 Batman  good      male   DC                  1934
+    3 Sabrina good      female Archie Comics         NA
+    4 <NA>    <NA>      <NA>   Image               1992
+
+### `semi_join()`: return all rows from `x` with match in `y`
+
+    semi_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 2 × 4
+      name    alignment gender publisher
+      <chr>   <chr>     <chr>  <chr>    
+    1 Magneto bad       male   Marvel   
+    2 Batman  good      male   DC       
+
+### `anti_join()`: return all rows from `x` without a match in `y`
+
+    anti_join(x = superheroes, y = publishers)
+
+    Joining, by = "publisher"
+
+    # A tibble: 1 × 4
+      name    alignment gender publisher    
+      <chr>   <chr>     <chr>  <chr>        
+    1 Sabrina good      female Archie Comics
+
+**Question: How do the join functions above know to join `x` and `y` by `value`? *Hint: Examine the column names to find out.***
+
+    names(superheroes)
+
+    [1] "name"      "alignment" "gender"    "publisher"
+
+    names(publishers)
+
+    [1] "publisher"  "yr_founded"
+
+## Prognosticator success
+
+We previously examined the accuracy rate of Groundhog Day prognosticators.^[1](https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fn1)^ Today we want to work with the original dataset to understand how those accuracy metrics were generated and answer the question: **How does prognosticator accuracy vary by climatic region?**
+
+Let's start by looking at the `seers` data frame.
+
+    glimpse(seers)
+
+    Rows: 1,457
+    Columns: 7
+    $ name            <chr> "Punxsutawney Phil", "Punxsutawney Phil", "Punxsutawne…
+    $ forecaster_type <chr> "Groundhog", "Groundhog", "Groundhog", "Groundhog", "G…
+    $ alive           <lgl> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+    $ town            <chr> "Punxsutawney", "Punxsutawney", "Punxsutawney", "Punxs…
+    $ state           <chr> "PA", "PA", "PA", "PA", "PA", "PA", "PA", "PA", "PA", …
+    $ year            <dbl> 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, …
+    $ prediction      <chr> "Long Winter", "Long Winter", "Early Spring", "Early S…
+
+We have the predictions, but our goal is to make a visualization by climate region.^[2](https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fn2)^
+
+![](https://info2950.infosci.cornell.edu/ae/images/climate-regions.gif){alt="The nine regions as defined by the National Climatic Data Center and regularly used in climate summaries."}
+
+Let's take a look at the weather data frame.
+
+    glimpse(weather)
+
+    Rows: 5,424
+    Columns: 13
+    $ region         <chr> "Northeast", "Northeast", "Northeast", "Northeast", "No…
+    $ state_abb      <chr> "CT", "CT", "CT", "CT", "CT", "CT", "CT", "CT", "CT", "…
+    $ id             <dbl> 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, …
+    $ year           <dbl> 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917, 1…
+    $ avg_temp       <dbl> 28.00, 29.20, 24.90, 23.15, 28.05, 22.05, 27.50, 21.55,…
+    $ temp_hist      <dbl> 25.58333, 26.09000, 26.16667, 25.85667, 25.63333, 25.52…
+    $ temp_hist_sd   <dbl> 4.245360, 4.241218, 4.103158, 4.124311, 3.907804, 4.016…
+    $ temp_sd        <dbl> 4.118598, 4.118598, 4.118598, 4.118598, 4.118598, 4.118…
+    $ precip         <dbl> 4.005, 2.520, 2.810, 3.570, 3.765, 2.920, 2.330, 3.425,…
+    $ precip_hist    <dbl> 3.476667, 3.526667, 3.378000, 3.411000, 3.446333, 3.352…
+    $ precip_hist_sd <dbl> 1.1784719, 1.2081292, 1.1442431, 1.1620681, 1.2039309, …
+    $ precip_sd      <dbl> 0.9641827, 0.9641827, 0.9641827, 0.9641827, 0.9641827, …
+    $ outcome        <chr> "Early Spring", "Early Spring", "Early Spring", "Late W…
+
+-   **Your turn (2 minutes):**
+
+    -   Which variable(s) will we use to join the `seers` and `weather` data frames?
+
+    -   We want to keep all rows and columns from `seers` and add columns for corresponding weather data. Which join function should we use?
+
+-   **Demo:** Join the two data frames and assign the joined data frame to `seers_weather`.
+
+<!-- -->
+
+    seers_weather <- inner_join(
+      x = seers, y = weather,
+      by = c("state" = "state_abb", "year")
+    )
+
+-   **Demo:** Take a look at the updated `seers` data frame. First we need to calculate for each prediction whether or not the prognistication was correct.
+
+<!-- -->
+
+    seers_weather <- seers_weather |>
+      mutate(correct_pred = prediction == outcome)
+
+-   **Demo:** Calculate the accuracy rate (we'll call it `preds_rate`) for weather predictions using the `summarize()` function in **dplyr**. Note that the function for calculating the mean is `mean()` in R.
+
+<!-- -->
+
+    seers_weather |> # start with seers data frame
+      group_by(region) |> # group by region
+      summarize(preds_rate = mean(correct_pred)) # calculate accuracy rate
+
+    # A tibble: 9 × 2
+      region                      preds_rate
+      <chr>                            <dbl>
+    1 Northeast                        0.299
+    2 Northern Rockies and Plains      0.488
+    3 Northwest                        0.214
+    4 Ohio Valley                      0.5  
+    5 South                            0.438
+    6 Southeast                        0.484
+    7 Southwest                        0.379
+    8 Upper Midwest                    0.386
+    9 West                             0    
+
+![](images/image-853001242.png)
+
+-   **Your turn (time permitting):** Make any other changes you would like to improve it.
+
+<!-- -->
+
+    # add your code here
+
+## **Footnotes**
+
+1.  See [ae-02](https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html)[↩︎](https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fnref1)
+
+2.  Source: [National Weather Service Climate Prediction Center](https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/regional_monitoring/regions.shtml)[↩︎](https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fnref2)
+
+# AE 05: Pivoting Cornell Degrees
+
+## Goal
+
+Our ultimate goal in this application exercise is to make the following data visualization.
+
+![![Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020.](https://info2950.infosci.cornell.edu/ae/images/cornell-degree-plot-final.png){alt="Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020."}](null)
+
+-   **Your turn (3 minutes):** Take a close look at the plot and describe what it shows in 2-3 sentences.
+
+*Add your response here.*
+
+## Data
+
+The data come from the [Department of Education's College Scorecard](https://collegescorecard.ed.gov/).
+
+They make the data available through online dashboards and an API, but I've prepared the data for you in a CSV file. Let's load that in.
+
+    library(tidyverse)
+    library(scales)
+
+    cornell_deg <- read_csv("data/cornell-degrees.csv")
+
+And let's take a look at the data.
+
+    cornell_deg
+
+    # A tibble: 6 × 21
+      field_…¹ `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008` `2009` `2010`
+      <chr>     <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+    1 academi… 0.239  0.290  0.173  0.161   0.168 0.170  0.181  0.183  0.181  0.179 
+    2 academi… 0.112  0.0979 0.110  0.198   0.157 0.168  0.151  0.136  0.148  0.129 
+    3 academi… 0.0859 0.0745 0.0463 0.0327  0.032 0.0221 0.0263 0.0262 0.0264 0.0297
+    4 academi… 0.071  0.0709 0.112  0.100   0.109 0.107  0.116  0.122  0.117  0.12  
+    5 academi… 0      0      0.122  0.112   0.109 0.110  0.126  0.134  0.128  0.12  
+    6 academi… 0.161  0.160  0.105  0.0973  0.113 0.099  0.102  0.0975 0.0983 0.0994
+    # … with 10 more variables: `2011` <dbl>, `2012` <dbl>, `2013` <dbl>,
+    #   `2014` <dbl>, `2015` <dbl>, `2016` <dbl>, `2017` <dbl>, `2018` <dbl>,
+    #   `2019` <dbl>, `2020` <dbl>, and abbreviated variable name ¹​field_of_study
+
+The dataset has 6 rows and 21 columns. The first column (variable) is the `field_of_study`, which are the 6 most frequent fields of study for students graduating in 2020.^[1](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#fn1)^ The remaining columns show the proportion of degrees awarded in each year from 2001-2020.
+
+-   **Your turn (4 minutes):** Take a look at the plot we aim to make and sketch the data frame we need to make the plot. Determine what each row and each column of the data frame should be. *Hint:* We need data to be in columns to map to `aes`thetic elements of the plot.
+
+    -   Columns: `year`, `pct` , `field_of_study`
+
+    -   Rows: Combination of year and field of study
+
+## Pivoting
+
+-   **Demo:** Pivot the `cornell_deg` data frame *longer* such that each row represents a field of study / year combination and `year` and `n`umber of graduates for that year are columns in the data frame.
+
+<!-- -->
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        values_to = "pct"
+      )
+
+    # A tibble: 120 × 3
+       field_of_study                           year    pct
+       <chr>                                    <chr> <dbl>
+     1 academics.program_percentage.engineering 2001  0.239
+     2 academics.program_percentage.engineering 2002  0.290
+     3 academics.program_percentage.engineering 2003  0.173
+     4 academics.program_percentage.engineering 2004  0.161
+     5 academics.program_percentage.engineering 2005  0.168
+     6 academics.program_percentage.engineering 2006  0.170
+     7 academics.program_percentage.engineering 2007  0.181
+     8 academics.program_percentage.engineering 2008  0.183
+     9 academics.program_percentage.engineering 2009  0.181
+    10 academics.program_percentage.engineering 2010  0.179
+    # … with 110 more rows
+
+-   **Question:** What is the type of the `year` variable? Why? What should it be?
+
+It's a character (`chr`) variable since the information came from the columns of the original data frame and R cannot know that these character strings represent years. The variable type should be numeric.
+
+-   **Demo:** Start over with pivoting, and this time also make sure `year` is a numerical variable in the resulting data frame.
+
+<!-- -->
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      )
+
+    # A tibble: 120 × 3
+       field_of_study                            year   pct
+       <chr>                                    <dbl> <dbl>
+     1 academics.program_percentage.engineering  2001 0.239
+     2 academics.program_percentage.engineering  2002 0.290
+     3 academics.program_percentage.engineering  2003 0.173
+     4 academics.program_percentage.engineering  2004 0.161
+     5 academics.program_percentage.engineering  2005 0.168
+     6 academics.program_percentage.engineering  2006 0.170
+     7 academics.program_percentage.engineering  2007 0.181
+     8 academics.program_percentage.engineering  2008 0.183
+     9 academics.program_percentage.engineering  2009 0.181
+    10 academics.program_percentage.engineering  2010 0.179
+    # … with 110 more rows
+
+-   **Demo:** In our plot the fields of study are the name of the field. This information is in our dataset, in the `field_of_study` column, but this column also has additional characters we don't need. Create a new column called `field` with levels Engineering, Business Marketing, Computer, Biological, Agriculture, and Social Science (in this order) based on `field_of_study`. Do this by adding on to your pipeline from earlier.
+
+<!-- -->
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field)
+
+    # A tibble: 120 × 3
+       field        year   pct
+       <fct>       <dbl> <dbl>
+     1 Engineering  2001 0.239
+     2 Engineering  2002 0.290
+     3 Engineering  2003 0.173
+     4 Engineering  2004 0.161
+     5 Engineering  2005 0.168
+     6 Engineering  2006 0.170
+     7 Engineering  2007 0.181
+     8 Engineering  2008 0.183
+     9 Engineering  2009 0.181
+    10 Engineering  2010 0.179
+    # … with 110 more rows
+
+-   **Your turn (5 minutes):** Now we start making our plot, but let's not get too fancy right away. Create the following plot, which will serve as the "first draft" on the way to our [Goal](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#goal). Do this by adding on to your pipeline from earlier.
+
+![![Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020.](https://info2950.infosci.cornell.edu/ae/images/cornell-degree-plot-draft.png){alt="Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020."}](null)
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field) |>
+      ggplot(aes(x = year, y = pct, color = field)) +
+      geom_point() +
+      geom_line()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-draft-1.png)
+
+-   **Your turn (4 minutes):** What aspects of the plot need to be updated to go from the draft you created above to the [Goal](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#goal) plot at the beginning of this application exercise.
+
+    -   x-axis scale: need to go from 2000 to 2020 in increments of 4 years
+
+    -   y-axis scale: percentage labeling
+
+    -   line colors
+
+    -   axis labels: title, subtitle, x, y, caption
+
+    -   theme
+
+    -   legend position and border
+
+-   **Demo:** Update x-axis scale such that the years displayed go from 2000 to 2020 in increments of 4 years. Update y-axis scale so it uses percentage formatting. Do this by adding on to your pipeline from earlier.
+
+<!-- -->
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field) |>
+      ggplot(aes(x = year, y = pct, color = field)) +
+      geom_point() +
+      geom_line() +
+      scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+      scale_y_continuous(labels = label_percent())
+
+![](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/scales-1.png)
+
+-   **Demo:** Update line colors using the `scale_color_colorblind()` palette from **ggthemes**. Once again, do this by adding on to your pipeline from earlier.
+
+<!-- -->
+
+    library(ggthemes)
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field) |>
+      ggplot(aes(x = year, y = pct, color = field)) +
+      geom_point() +
+      geom_line() +
+      scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+      scale_y_continuous(labels = label_percent()) +
+      scale_color_colorblind()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/color-palette-1.png)
+
+-   **Your turn (4 minutes):** Update the plot labels (`title`, `subtitle`, `x`, `y`, and `caption`) and use `theme_minimal()`. Once again, do this by adding on to your pipeline from earlier.
+
+<!-- -->
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field) |>
+      ggplot(aes(x = year, y = pct, color = field)) +
+      geom_point() +
+      geom_line() +
+      scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+      scale_color_colorblind() +
+      scale_y_continuous(labels = label_percent()) +
+      labs(
+        x = "Graduation year",
+        y = "Percent of degrees awarded",
+        color = "Field of study",
+        title = "Cornell University degrees awarded from 2001-2020",
+        subtitle = "Only the top six fields as of 2020",
+        caption = "Source: Department of Education\nhttps://collegescorecard.ed.gov/"
+      ) +
+      theme_minimal()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-labels-1.png)
+
+-   **Demo:** Finally, set `fig-width: 7` and `fig-height: 5` for your plot in the chunk options.
+
+<!-- -->
+
+    #| fig-width: 7
+    #| fig-height: 5
+
+    cornell_deg |>
+      pivot_longer(
+        cols = -field_of_study,
+        names_to = "year",
+        names_transform = parse_number,
+        values_to = "pct"
+      ) |>
+      separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |>
+      mutate(
+        field = str_replace(string = field, pattern = "_", replacement = " "),
+        field = str_to_title(string = field),
+        field = fct_relevel(
+          field, "Engineering", "Business Marketing", "Computer",
+          "Biological", "Agriculture", "Social Science"
+        )
+      ) |>
+      relocate(field) |>
+      ggplot(aes(x = year, y = pct, color = field)) +
+      geom_point() +
+      geom_line() +
+      scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+      scale_color_colorblind() +
+      scale_y_continuous(labels = label_percent()) +
+      labs(
+        x = "Graduation year",
+        y = "Percent of degrees awarded",
+        color = "Field of study",
+        title = "Cornell University degrees awarded from 2001-2020",
+        subtitle = "Only the top six fields as of 2020",
+        caption = "Source: Department of Education\nhttps://collegescorecard.ed.gov/"
+      ) +
+      theme_minimal()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-final-1.png)
+
+## **Footnotes**
+
+1.  For the sake of application, I omitted the other 32 possible fields of study.[↩︎](https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#fnref1)
+
+# AE 06: Data types and classes
+
+## Packages
+
+-   **tidyverse**: For data import, wrangling, and visualization.
+
+-   **skimr**: For summarizing the entire data frame at once.
+
+-   **scales**: For better axis labels.
+
+<!-- -->
+
+    library(tidyverse)
+    library(skimr)
+    library(scales)
+
+## Type coercion
+
+-   **Demo:** Determine the type of the following vector. And then, change the type to numeric.
+
+        x <- c("1", "2", "3")
+        typeof(x)
+
+        [1] "character"
+
+        as.numeric(x)
+
+        [1] 1 2 3
+
+        parse_number(x)
+
+        [1] 1 2 3
+
+-   **Demo:** Once again, determine the type of the following vector. And then, change the type to numeric. What's different than the previous exercise?
+
+        y <- c("a", "b", "c")
+        typeof(y)
+
+        [1] "character"
+
+        as.numeric(y)
+
+        Warning: NAs introduced by coercion
+
+        [1] NA NA NA
+
+        parse_number(y)
+
+        Warning: 3 parsing failures.
+        row col expected actual
+          1  -- a number      a
+          2  -- a number      b
+          3  -- a number      c
+
+        [1] NA NA NA
+        attr(,"problems")
+        # A tibble: 3 × 4
+            row   col expected actual
+          <int> <int> <chr>    <chr> 
+        1     1    NA a number a     
+        2     2    NA a number b     
+        3     3    NA a number c     
+
+-   **Demo:** Once again, determine the type of the following vector. And then, change the type to numeric. What's different than the previous exercise?
+
+        z <- c("1", "2", "three")
+        typeof(z)
+
+        [1] "character"
+
+        as.numeric(z)
+
+        Warning: NAs introduced by coercion
+
+        [1]  1  2 NA
+
+        parse_number(z)
+
+        Warning: 1 parsing failure.
+        row col expected actual
+          3  -- a number  three
+
+        [1]  1  2 NA
+        attr(,"problems")
+        # A tibble: 1 × 4
+            row   col expected actual
+          <int> <int> <chr>    <chr> 
+        1     3    NA a number three 
+
+-   **Demo:** Suppose you conducted a survey where you asked people how many cars their household owns collectively. And the answers are as follows:
+
+        survey_results <- tibble(cars = c(1, 2, "three"))
+        survey_results
+
+        # A tibble: 3 × 1
+          cars 
+          <chr>
+        1 1    
+        2 2    
+        3 three
+
+    This is annoying because of that third survey taker who just had to go and type out the number instead of providing as a numeric value. So now you need to update the `cars` variable to be numeric. You do the following
+
+        survey_results |>
+          mutate(cars = as.numeric(cars))
+
+        Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
+
+        # A tibble: 3 × 1
+           cars
+          <dbl>
+        1     1
+        2     2
+        3    NA
+
+    And now things are even more annoying because you get a warning `NAs introduced by coercion` that happened while computing `cars = as.numeric(cars)` and the response from the third survey taker is now an `NA` (you lost their data). Fix your `mutate()` call to avoid this warning.
+
+        survey_results |>
+          mutate(
+            cars = if_else(cars == "three", "3", cars),
+            cars = as.numeric(cars)
+            )
+
+        # A tibble: 3 × 1
+           cars
+          <dbl>
+        1     1
+        2     2
+        3     3
+
+        # or with parse_number()
+        survey_results |>
+          mutate(
+            cars = if_else(cars == "three", "3", cars),
+            cars = parse_number(cars)
+            )
+
+        # A tibble: 3 × 1
+           cars
+          <dbl>
+        1     1
+        2     2
+        3     3
+
+-   Your turn: First, guess the type of the vector. Then, check if you guessed right. I've done the first one for you, you'll see that it's helpful to check the type of each element of the vector first.
+
+    -   `c(1, 1L, "C")`
+
+            v1 <- c(1, 1L, "C")
+
+            # to help you guess
+            typeof(1)
+
+            [1] "double"
+
+            typeof(1L)
+
+            [1] "integer"
+
+            typeof("C")
+
+            [1] "character"
+
+            # to check after you guess
+            typeof(v1)
+
+            [1] "character"
+
+    -   `c(1L / 0, "A")`
+
+            v2 <- c(1L / 0, "A")
+
+            # to help you guess
+            typeof(1L)
+
+            [1] "integer"
+
+            typeof(0)
+
+            [1] "double"
+
+            typeof(1L / 0)
+
+            [1] "double"
+
+            typeof("A")
+
+            [1] "character"
+
+            # to check after you guess
+            typeof(v2)
+
+            [1] "character"
+
+    -   `c(1:3, 5)`
+
+            v3 <- c(1:3, 5)
+
+            # to help you guess
+            typeof(1:3)
+
+            [1] "integer"
+
+            typeof(5)
+
+            [1] "double"
+
+            # to check after you guess
+            typeof(v3)
+
+            [1] "double"
+
+    -   `c(3, "3+")`
+
+            v4 <- c(3, "3+")
+
+            # to help you guess
+            typeof(3)
+
+            [1] "double"
+
+            typeof("3+")
+
+            [1] "character"
+
+            # to check after you guess
+            typeof(v4)
+
+            [1] "character"
+
+    -   `c(NA, TRUE)`
+
+            v5 <- c(NA, TRUE)
+
+            # to help you guess
+            typeof(NA)
+
+            [1] "logical"
+
+            typeof(TRUE)
+
+            [1] "logical"
+
+            # to check after you guess
+            typeof(v5)
+
+            [1] "logical"
+
+## Hotel bookings
+
+    # From TidyTuesday: https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md
+
+    hotels <- read_csv("data/hotels.csv")
+    skim(hotels)  # much more useful to run interactively in the console
+
+|                                                  | Data summary |
+|--------------------------------------------------|--------------|
+| Name                                             | hotels       |
+| Number of rows                                   | 119390       |
+| Number of columns                                | 32           |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |              |
+| Column type frequency:                           |              |
+| character                                        | 13           |
+| Date                                             | 1            |
+| numeric                                          | 18           |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |              |
+| Group variables                                  | None         |
+
+**Variable type: character**
+
+| skim_variable        | n_missing | complete_rate | min | max | empty | n_unique | whitespace |
+|:---------------------|----------:|--------------:|----:|----:|------:|---------:|-----------:|
+| hotel                |         0 |             1 |  10 |  12 |     0 |        2 |          0 |
+| arrival_date_month   |         0 |             1 |   3 |   9 |     0 |       12 |          0 |
+| meal                 |         0 |             1 |   2 |   9 |     0 |        5 |          0 |
+| country              |         0 |             1 |   2 |   4 |     0 |      178 |          0 |
+| market_segment       |         0 |             1 |   6 |  13 |     0 |        8 |          0 |
+| distribution_channel |         0 |             1 |   3 |   9 |     0 |        5 |          0 |
+| reserved_room_type   |         0 |             1 |   1 |   1 |     0 |       10 |          0 |
+| assigned_room_type   |         0 |             1 |   1 |   1 |     0 |       12 |          0 |
+| deposit_type         |         0 |             1 |  10 |  10 |     0 |        3 |          0 |
+| agent                |         0 |             1 |   1 |   4 |     0 |      334 |          0 |
+| company              |         0 |             1 |   1 |   4 |     0 |      353 |          0 |
+| customer_type        |         0 |             1 |   5 |  15 |     0 |        4 |          0 |
+| reservation_status   |         0 |             1 |   7 |   9 |     0 |        3 |          0 |
+
+**Variable type: Date**
+
+| skim_variable           | n_missing | complete_rate | min        | max        | median     | n_unique |
+|:------------------------|----------:|--------------:|:-----------|:-----------|:-----------|---------:|
+| reservation_status_date |         0 |             1 | 2014-10-17 | 2017-09-14 | 2016-08-07 |      926 |
+
+**Variable type: numeric**
+
+| skim_variable                  | n_missing | complete_rate |    mean |     sd |      p0 |     p25 |     p50 |  p75 | p100 | hist  |
+|:-------------------------------|----------:|--------------:|--------:|-------:|--------:|--------:|--------:|-----:|-----:|:------|
+| is_canceled                    |         0 |             1 |    0.37 |   0.48 |    0.00 |    0.00 |    0.00 |    1 |    1 | ▇▁▁▁▅ |
+| lead_time                      |         0 |             1 |  104.01 | 106.86 |    0.00 |   18.00 |   69.00 |  160 |  737 | ▇▂▁▁▁ |
+| arrival_date_year              |         0 |             1 | 2016.16 |   0.71 | 2015.00 | 2016.00 | 2016.00 | 2017 | 2017 | ▃▁▇▁▆ |
+| arrival_date_week_number       |         0 |             1 |   27.17 |  13.61 |    1.00 |   16.00 |   28.00 |   38 |   53 | ▅▇▇▇▅ |
+| arrival_date_day_of_month      |         0 |             1 |   15.80 |   8.78 |    1.00 |    8.00 |   16.00 |   23 |   31 | ▇▇▇▇▆ |
+| stays_in_weekend_nights        |         0 |             1 |    0.93 |   1.00 |    0.00 |    0.00 |    1.00 |    2 |   19 | ▇▁▁▁▁ |
+| stays_in_week_nights           |         0 |             1 |    2.50 |   1.91 |    0.00 |    1.00 |    2.00 |    3 |   50 | ▇▁▁▁▁ |
+| adults                         |         0 |             1 |    1.86 |   0.58 |    0.00 |    2.00 |    2.00 |    2 |   55 | ▇▁▁▁▁ |
+| children                       |         4 |             1 |    0.10 |   0.40 |    0.00 |    0.00 |    0.00 |    0 |   10 | ▇▁▁▁▁ |
+| babies                         |         0 |             1 |    0.01 |   0.10 |    0.00 |    0.00 |    0.00 |    0 |   10 | ▇▁▁▁▁ |
+| is_repeated_guest              |         0 |             1 |    0.03 |   0.18 |    0.00 |    0.00 |    0.00 |    0 |    1 | ▇▁▁▁▁ |
+| previous_cancellations         |         0 |             1 |    0.09 |   0.84 |    0.00 |    0.00 |    0.00 |    0 |   26 | ▇▁▁▁▁ |
+| previous_bookings_not_canceled |         0 |             1 |    0.14 |   1.50 |    0.00 |    0.00 |    0.00 |    0 |   72 | ▇▁▁▁▁ |
+| booking_changes                |         0 |             1 |    0.22 |   0.65 |    0.00 |    0.00 |    0.00 |    0 |   21 | ▇▁▁▁▁ |
+| days_in_waiting_list           |         0 |             1 |    2.32 |  17.59 |    0.00 |    0.00 |    0.00 |    0 |  391 | ▇▁▁▁▁ |
+| adr                            |         0 |             1 |  101.83 |  50.54 |   -6.38 |   69.29 |   94.58 |  126 | 5400 | ▇▁▁▁▁ |
+| required_car_parking_spaces    |         0 |             1 |    0.06 |   0.25 |    0.00 |    0.00 |    0.00 |    0 |    8 | ▇▁▁▁▁ |
+| total_of_special_requests      |         0 |             1 |    0.57 |   0.79 |    0.00 |    0.00 |    0.00 |    1 |    5 | ▇▁▁▁▁ |
+
+**Question:** Take a look at the the following visualization. How are the months ordered? What would be a better order?
+
+![![](https://info2950.infosci.cornell.edu/ae/images/hotel-prices-months.png)](null)
+
+**Demo:** Reorder the months on the x-axis (levels of `arrival_date_month`) in a way that makes more sense. You will want to use a function from the **forcats** package, see [https://forcats.tidyverse.org/reference/index.html](https://forcats.tidyverse.org/reference/) for inspiration and help.
+
+    hotels |>
+      mutate(
+        # convert to factor, use labels argument to create short versions
+        arrival_date_month = factor(
+          x = arrival_date_month,
+          levels = month.name,
+          labels = month.abb
+        )
+      ) |>
+      group_by(hotel, arrival_date_month) |>
+      summarize(mean_adr = mean(adr), .groups = "drop") |>
+      ggplot(mapping = aes(
+        x = arrival_date_month,
+        y = mean_adr,
+        group = hotel,
+        color = hotel
+      )) +
+      geom_line() +
+      theme_minimal() +
+      labs(
+        x = "Arrival month",
+        y = "Mean ADR (average daily rate)",
+        title = "Comparison of resort and city hotel prices across months",
+        subtitle = "Resort hotel prices soar in the summer while city hotel prices remain relatively constant throughout the year",
+        color = "Hotel type"
+      )
+
+![](https://info2950.infosci.cornell.edu/ae/ae-06-data-types-classes-A_files/figure-html/hotels-plot-1.png)
+
+**Stretch goal:** If you finish the above task before time is up, change the y-axis label so the values are shown with dollar signs, e.g. \$80 instead of 80. You will want to use a function from the **scales** package, see [https://scales.r-lib.org/reference/index.html](https://scales.r-lib.org/reference/) for inspiration and help.
+
+Additionally, adjust the `fig-width` code chunk option so that the entire title fits on the plot.
+
+    ```{r}
+    #| label: hotels-plot-improve
+    #| fig-width: 8
+
+    hotels |>
+      mutate(
+        # convert to factor, use labels argument to create short versions
+        arrival_date_month = factor(x = arrival_date_month, levels = month.name, labels = month.abb),
+        # adjust the level order using month.abb
+        arrival_date_month = fct_relevel(.f = arrival_date_month, month.abb)
+      ) |>
+      group_by(hotel, arrival_date_month) |>
+      summarize(mean_adr = mean(adr), .groups = "drop") |>
+      ggplot(mapping = aes(
+        x = arrival_date_month,
+        y = mean_adr,
+        group = hotel,
+        color = hotel
+      )) +
+      geom_line() +
+      theme_minimal() +
+      labs(
+        x = "Arrival month",
+        y = "Mean ADR (average daily rate)",
+        title = "Comparison of resort and city hotel prices across months",
+        subtitle = "Resort hotel prices soar in the summer while city hotel prices remain relatively constant throughout the year",
+        color = "Hotel type"
+      ) +
+      scale_y_continuous(labels = label_dollar())
+    ```
+
+![](https://info2950.infosci.cornell.edu/ae/ae-06-data-types-classes-A_files/figure-html/hotels-plot-improve-1.png)
+
+# AE 07: Data import
+
+## Packages
+
+We will use the following three packages in this application exercise.
+
+-   **tidyverse**: For data import, wrangling, and visualization.
+
+-   **readxl:** For importing data from Excel.
+
+-   **janitor:** For cleaning column names.
+
+<!-- -->
+
+    library(tidyverse)
+    library(readxl)
+    library(janitor)
+
+## Nobel winners
+
+-   **Demo:** Load the data from the `data` folder and assign it to `nobel`. Confirm that this new object appears in your Environment tab.
+
+<!-- -->
+
+    nobel <- read_csv("data/nobel.csv")
+
+    Rows: 935 Columns: 26
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr  (21): firstname, surname, category, affiliation, city, country, gender,...
+    dbl   (3): id, year, share
+    date  (2): born_date, died_date
+
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+-   **Your turn (4 minutes):** Split the data into two -- nobel laureates in STEM fields (`category` should be Physics, Medicine, Chemistry, or Economics) and nobel laureates in non-STEM fields. Name these two new objects appropriately. *Remember:* Use concise and evocative names. Confirm that these new objects appear in your Environment tab and that the sum of the number of observations in the two new data frames add to the number of observations in the original data frame.
+
+<!-- -->
+
+    # define stem fields
+    stem_fields <- c("Physics", "Medicine", "Chemistry", "Economics")
+
+    # stem laureates
+    nobel_stem <- nobel |>
+      filter(category %in% stem_fields)
+
+    # non-steam laureates
+    nobel_nonstem <- nobel |>
+      filter(!(category %in% stem_fields))
+
+-   **Demo:** Write out the two new datasets you created into the `data` folder:
+
+<!-- -->
+
+    write_csv(nobel_stem, file = "data/nobel-stem.csv")
+    write_csv(nobel_nonstem, file = "data/nobel-nonstem.csv")
+
+## Freedom House Index
+
+[Freedom House](https://freedomhouse.org/) is a non-profit policy research center that produces research and reports on a number of issues related to democracy, political rights, and civil liberties. One of its main reports is an annual comparative assessment of global political rights and civil liberties ([*Freedom in the World*](https://freedomhouse.org/report/freedom-world)). The dataset is composed from numerous numerical ratings and supporting descriptive text for 195 countries and 15 territories.
+
+# AE 08: Scraping articles from the Cornell Review
+
+## Packages
+
+We will use the following packages in this application exercise.
+
+-   **tidyverse**: For data import, wrangling, and visualization.
+
+-   **rvest:** For scraping HTML files.
+
+-   **lubridate:** For formatting date variables.
+
+-   **robotstxt:** For verifying if we can scrape a website.
+
+<!-- -->
+
+    library(tidyverse)
+    library(rvest)
+    library(lubridate)
+    library(robotstxt)
+
+## Data scraping
+
+See the code below stored in `scrape-cornell-review.R`.
+
+    # load packages
+    library(tidyverse)
+    library(rvest)
+    library(lubridate)
+    library(robotstxt)
+
+    # check that we can scrape data from the cornell review
+    paths_allowed("https://www.thecornellreview.org/")
+
+    # read the first page
+    page <- read_html("https://www.thecornellreview.org/")
+
+    # extract desired components
+    titles <- html_elements(x = page, css = ".entry-title a") |>
+      html_text2()
+
+    authors <- html_elements(x = page, css = ".fn") |>
+      html_text2()
+
+    article_dates <- html_elements(x = page, css = ".published") |>
+      html_text2()
+
+    topics <- html_elements(x = page, css = ".cmsmasters_post_category") |>
+      html_text2()
+
+    abstracts <- html_elements(x = page, css = ".entry-content p") |>
+      html_text2()
+
+    post_urls <- html_elements(x = page, css = ".cmsmasters_post_read_more") |>
+      html_attr(name = "href")
+
+    # create a tibble with this data
+    review_raw <- tibble(
+      title = titles,
+      author = authors,
+      date = article_dates,
+      topic = topics,
+      abstract = abstracts,
+      url = post_urls
+    )
+
+    # clean up the data
+    review <- review_raw |>
+      mutate(date = mdy(date))
+
+    # save to disk
+    write_csv(x = review, file = "data/cornell-review.csv")
+
+# AE 09: Scraping multiple pages of articles from the Cornell Review
+
+## Packages
+
+We will use the following packages in this application exercise.
+
+-   **tidyverse**: For data import, wrangling, and visualization.
+
+-   **rvest:** For scraping HTML files.
+
+-   **lubridate:** For formatting date variables.
+
+-   **robotstxt:** For verifying if we can scrape a website.
+
+<!-- -->
+
+    library(tidyverse)
+    library(rvest)
+    library(lubridate)
+    library(robotstxt)
+
+## Part 1 - Data scraping
+
+See the code below stored in `iterate-cornell-review.R`.
+
+    # load packages
+    library(tidyverse)
+    library(rvest)
+    library(lubridate)
+    library(robotstxt)
+
+    # check that we can scrape data from the cornell review
+    paths_allowed("https://www.thecornellreview.org/")
+
+    # read the first page
+    page <- read_html("https://www.thecornellreview.org/")
+
+    # extract desired components
+    titles <- html_elements(x = page, css = ".entry-title a") |>
+      html_text2()
+
+    authors <- html_elements(x = page, css = ".fn") |>
+      html_text2()
+
+    article_dates <- html_elements(x = page, css = ".published") |>
+      html_text2()
+
+    topics <- html_elements(x = page, css = ".cmsmasters_post_category") |>
+      html_text2()
+
+    abstracts <- html_elements(x = page, css = ".entry-content p") |>
+      html_text2()
+
+    post_urls <- html_elements(x = page, css = ".cmsmasters_post_read_more") |>
+      html_attr(name = "href")
+
+    # create a tibble with this data
+    review_raw <- tibble(
+      title = titles,
+      author = authors,
+      date = article_dates,
+      topic = topics,
+      abstract = abstracts,
+      url = post_urls
+    )
+
+    # clean up the data
+    review <- review_raw |>
+      mutate(date = mdy(date))
+
+    # convert to a function
+    scrape_review <- function(url){
+      # pause for a couple of seconds to prevent rapid HTTP requests
+      Sys.sleep(2)
+
+      # read the first page
+      page <- read_html(url)
+
+      # extract desired components
+      titles <- html_elements(x = page, css = ".entry-title a") |>
+        html_text2()
+
+      authors <- html_elements(x = page, css = ".fn") |>
+        html_text2()
+
+      article_dates <- html_elements(x = page, css = ".published") |>
+        html_text2()
+
+      topics <- html_elements(x = page, css = ".cmsmasters_post_category") |>
+        html_text2()
+
+      abstracts <- html_elements(x = page, css = ".entry-content p") |>
+        html_text2()
+
+      post_urls <- html_elements(x = page, css = ".cmsmasters_post_read_more") |>
+        html_attr(name = "href")
+
+      # create a tibble with this data
+      review_raw <- tibble(
+        title = titles,
+        author = authors,
+        date = article_dates,
+        topic = topics,
+        abstract = abstracts,
+        url = post_urls
+      )
+
+      # clean up the data and export
+      review_raw |>
+        mutate(date = mdy(date))
+      }
+
+    # test function
+    ## page 1
+    scrape_review(url = "https://www.thecornellreview.org/page/1/")
+
+    ## page 2
+    scrape_review(url = "https://www.thecornellreview.org/page/2/")
+
+    ## page 3
+    scrape_review(url = "https://www.thecornellreview.org/page/3/")
+
+    # create a vector of URLs
+    page_nums <- 1:10
+    cr_urls <- str_glue("https://www.thecornellreview.org/page/{page_nums}/")
+    cr_urls
+
+    # map function over URLs
+    cr_reviews <- map(.x = cr_urls, .f = scrape_review) |>
+      list_rbind()
+
+    # write data
+    write_csv(x = cr_reviews, file = "data/cornell-review-all.csv")
+
+## Part 2 - Data analysis
+
+**Demo:** Import the scraped data set.
+
+    cr_reviews <- read_csv(file = "data/cornell-review-all.csv")
+
+    Rows: 100 Columns: 6
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr  (5): title, author, topic, abstract, url
+    date (1): date
+
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+    cr_reviews
+
+    # A tibble: 100 × 6
+       title                                   author date       topic abstr…¹ url  
+       <chr>                                   <chr>  <date>     <chr> <chr>   <chr>
+     1 University Assembly Approves Plan B Ve… Rodge… 2023-02-27 Camp… "At th… http…
+     2 University Assembly Considers TCAT, Pl… Rodge… 2023-02-26 Camp… "On Fe… http…
+     3 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 Beyo… "\"Our… http…
+     4 LETTER TO THE EDITOR | Re: Does Zoning… Sandr… 2023-02-26 Beyo… "Simpl… http…
+     5 Cornell Throws TCAT Under the Bus       Rodge… 2023-02-25 Camp… "The U… http…
+     6 Guest Essay: Cornell Must Apologize fo… Avery… 2023-02-25 Camp… "The a… http…
+     7 Pearl Lucas Stood Up For Truth          Revie… 2023-02-23 Beyo… "Pearl… http…
+     8 Richard Ford Addresses Diversity vs. R… Revie… 2023-02-23 Camp… "Ford … http…
+     9 OPINION: Bring Back the Books and Boats Rodge… 2023-02-22 Opin… "The m… http…
+    10 A Freshman Dorm is no place for “Sex i… Culle… 2023-02-21 Camp… "It’s … http…
+    # … with 90 more rows, and abbreviated variable name ¹​abstract
+
+**Demo:** Who are the most prolific authors?
+
+    cr_reviews |>
+      # adjust order of authors so they appear from most to least frequent
+      mutate(author = fct_infreq(f = author) |>
+        fct_rev()) |>
+      # horizontal bar chart
+      ggplot(mapping = aes(y = author)) +
+      geom_bar()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-09-cornell-review-iteration-A_files/figure-html/authors-1.png)
+
+**Demo:** What topics does The Cornell Review write about?
+
+    # basic bar plot
+    ggplot(data = cr_reviews, mapping = aes(y = topic)) +
+      geom_bar()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-09-cornell-review-iteration-A_files/figure-html/topics-1.png)
+
+Not super helpful. Each article can have multiple topics. What is the syntax for this column?
+
+    cr_reviews |>
+      select(topic)
+
+    # A tibble: 100 × 1
+       topic                                                                        
+       <chr>                                                                        
+     1 Campus                                                                       
+     2 Campus                                                                       
+     3 Beyond Cayuga's Waters, Campus, Culture, Law, New York, Politics, United Sta…
+     4 Beyond Cayuga's Waters, Letters to the Editor                                
+     5 Campus                                                                       
+     6 Campus, Opinion                                                              
+     7 Beyond Cayuga's Waters, Campus, Culture, New York, Opinion, Politics, United…
+     8 Campus, Culture                                                              
+     9 Opinion                                                                      
+    10 Campus, Culture, Opinion                                                     
+    # … with 90 more rows
+
+Each topic is separated by a `","`. Since the number of topics varies for each article, we cannot `separate()` this column. Instead we can use a **stringr** function to split them into distinct character strings.
+
+    cr_reviews |>
+      mutate(topic = str_split(string = topic, pattern = ","))
+
+    # A tibble: 100 × 6
+       title                                   author date       topic abstr…¹ url  
+       <chr>                                   <chr>  <date>     <lis> <chr>   <chr>
+     1 University Assembly Approves Plan B Ve… Rodge… 2023-02-27 <chr> "At th… http…
+     2 University Assembly Considers TCAT, Pl… Rodge… 2023-02-26 <chr> "On Fe… http…
+     3 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 <chr> "\"Our… http…
+     4 LETTER TO THE EDITOR | Re: Does Zoning… Sandr… 2023-02-26 <chr> "Simpl… http…
+     5 Cornell Throws TCAT Under the Bus       Rodge… 2023-02-25 <chr> "The U… http…
+     6 Guest Essay: Cornell Must Apologize fo… Avery… 2023-02-25 <chr> "The a… http…
+     7 Pearl Lucas Stood Up For Truth          Revie… 2023-02-23 <chr> "Pearl… http…
+     8 Richard Ford Addresses Diversity vs. R… Revie… 2023-02-23 <chr> "Ford … http…
+     9 OPINION: Bring Back the Books and Boats Rodge… 2023-02-22 <chr> "The m… http…
+    10 A Freshman Dorm is no place for “Sex i… Culle… 2023-02-21 <chr> "It’s … http…
+    # … with 90 more rows, and abbreviated variable name ¹​abstract
+
+This makes the column a **list-column** with each element a separate character vector. From here we need to **unnest** the column so each row contains a single topic value.
+
+    cr_reviews |>
+      mutate(topic = str_split(string = topic, pattern = ",")) |>
+      unnest_longer(col = topic)
+
+    # A tibble: 293 × 6
+       title                                   author date       topic abstr…¹ url  
+       <chr>                                   <chr>  <date>     <chr> <chr>   <chr>
+     1 University Assembly Approves Plan B Ve… Rodge… 2023-02-27 "Cam… "At th… http…
+     2 University Assembly Considers TCAT, Pl… Rodge… 2023-02-26 "Cam… "On Fe… http…
+     3 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 "Bey… "\"Our… http…
+     4 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " Ca… "\"Our… http…
+     5 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " Cu… "\"Our… http…
+     6 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " La… "\"Our… http…
+     7 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " Ne… "\"Our… http…
+     8 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " Po… "\"Our… http…
+     9 Cornell Law Professor Launches Equal P… Samue… 2023-02-26 " Un… "\"Our… http…
+    10 LETTER TO THE EDITOR | Re: Does Zoning… Sandr… 2023-02-26 "Bey… "Simpl… http…
+    # … with 283 more rows, and abbreviated variable name ¹​abstract
+
+Notice the data frame now has additional rows. The unit of analysis is now an article-topic combination, rather than one-row-per-article. Not entirely a tidy structure, but necessary to construct a chart to visualize topic frequency.
+
+    cr_reviews |>
+      mutate(topic = str_split(string = topic, pattern = ",")) |>
+      unnest_longer(col = topic) |>
+      ggplot(mapping = aes(y = topic)) +
+      geom_bar()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-09-cornell-review-iteration-A_files/figure-html/topics-bar-chart-1.png)
+
+Let's clean this up like the previous chart.
+
+    cr_reviews |>
+      mutate(topic = str_split(string = topic, pattern = ",")) |>
+      unnest_longer(col = topic) |>
+      # str_trim() - remove remove whitespace characters at beginning
+      # and end of character strings
+      mutate(topic = str_trim(string = topic) |>
+        fct_infreq() |>
+        fct_rev()) |>
+      ggplot(mapping = aes(y = topic)) +
+      geom_bar()
+
+![](https://info2950.infosci.cornell.edu/ae/ae-09-cornell-review-iteration-A_files/figure-html/topics-bar-chart-clean-1.png)

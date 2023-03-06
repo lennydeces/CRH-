@@ -1,0 +1,2825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CRH - CRH-</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">CRH</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#ae-01-bechdel-data-visualization" id="toc-ae-01-bechdel-data-visualization" class="nav-link" data-scroll-target="#ae-01-bechdel-data-visualization">AE 01: Bechdel + data visualization</a>
+  <ul class="collapse">
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#get-to-know-the-data" id="toc-get-to-know-the-data" class="nav-link" data-scroll-target="#get-to-know-the-data">Get to know the data</a></li>
+  <li><a href="#variables-of-interest" id="toc-variables-of-interest" class="nav-link" data-scroll-target="#variables-of-interest">Variables of interest</a></li>
+  </ul></li>
+  <li><a href="#visualizing-data-with-ggplot2" id="toc-visualizing-data-with-ggplot2" class="nav-link" data-scroll-target="#visualizing-data-with-ggplot2">Visualizing data with <code>ggplot2</code></a></li>
+  <li><a href="#budget-vs.-gross-revenue" id="toc-budget-vs.-gross-revenue" class="nav-link" data-scroll-target="#budget-vs.-gross-revenue">Budget vs.&nbsp;gross revenue</a>
+  <ul class="collapse">
+  <li><a href="#step-1---your-turn" id="toc-step-1---your-turn" class="nav-link" data-scroll-target="#step-1---your-turn">Step 1 - Your turn</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ae-02-visualizing-the-prognosticators" id="toc-ae-02-visualizing-the-prognosticators" class="nav-link" data-scroll-target="#ae-02-visualizing-the-prognosticators">AE 02: Visualizing the prognosticators</a></li>
+  <li><a href="#visualizing-prediction-success-rate---demo" id="toc-visualizing-prediction-success-rate---demo" class="nav-link" data-scroll-target="#visualizing-prediction-success-rate---demo">Visualizing prediction success rate - Demo</a>
+  <ul class="collapse">
+  <li><a href="#single-variable" id="toc-single-variable" class="nav-link" data-scroll-target="#single-variable">Single variable</a></li>
+  <li><a href="#two-variables" id="toc-two-variables" class="nav-link" data-scroll-target="#two-variables">Two variables</a></li>
+  <li><a href="#multiple-variables" id="toc-multiple-variables" class="nav-link" data-scroll-target="#multiple-variables">Multiple variables</a></li>
+  <li><a href="#visualizing-other-variables---your-turn" id="toc-visualizing-other-variables---your-turn" class="nav-link" data-scroll-target="#visualizing-other-variables---your-turn">Visualizing other variables - Your turn!</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><strong>Footnotes</strong></a></li>
+  </ul></li>
+  <li><a href="#ae-03-wrangling-professor-evaluations" id="toc-ae-03-wrangling-professor-evaluations" class="nav-link" data-scroll-target="#ae-03-wrangling-professor-evaluations">AE 03: Wrangling professor evaluations</a></li>
+  <li><a href="#tibble-vs.-data-frame" id="toc-tibble-vs.-data-frame" class="nav-link" data-scroll-target="#tibble-vs.-data-frame">Tibble vs.&nbsp;data frame</a></li>
+  <li><a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr">Data wrangling with <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select()</code></a></li>
+  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe</a></li>
+  <li><a href="#slice" id="toc-slice" class="nav-link" data-scroll-target="#slice"><code>slice()</code></a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><code>arrange()</code></a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><code>filter()</code></a></li>
+  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><code>count()</code></a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><code>mutate()</code></a></li>
+  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><code>summarize()</code></a></li>
+  <li><a href="#group_by" id="toc-group_by" class="nav-link" data-scroll-target="#group_by"><code>group_by()</code></a></li>
+  </ul></li>
+  <li><a href="#additional-practice" id="toc-additional-practice" class="nav-link" data-scroll-target="#additional-practice">Additional Practice</a>
+  <ul class="collapse">
+  <li><a href="#footnotes-1" id="toc-footnotes-1" class="nav-link" data-scroll-target="#footnotes-1"><strong>Footnotes</strong></a></li>
+  </ul></li>
+  <li><a href="#ae-04-joining-prognosticators" id="toc-ae-04-joining-prognosticators" class="nav-link" data-scroll-target="#ae-04-joining-prognosticators">AE 04: Joining prognosticators</a>
+  <ul class="collapse">
+  <li><a href="#working-with-multiple-data-frames" id="toc-working-with-multiple-data-frames" class="nav-link" data-scroll-target="#working-with-multiple-data-frames">Working with multiple data frames</a>
+  <ul class="collapse">
+  <li><a href="#inner_join-join-all-rows-from-x-where-there-are-matching-values-in-y" id="toc-inner_join-join-all-rows-from-x-where-there-are-matching-values-in-y" class="nav-link" data-scroll-target="#inner_join-join-all-rows-from-x-where-there-are-matching-values-in-y"><code>inner_join()</code>: join all rows from <code>x</code> where there are matching values in <code>y</code></a></li>
+  <li><a href="#left_join-include-all-rows-from-x" id="toc-left_join-include-all-rows-from-x" class="nav-link" data-scroll-target="#left_join-include-all-rows-from-x"><code>left_join()</code>: include all rows from <code>x</code></a></li>
+  <li><a href="#right_join-include-all-rows-from-y" id="toc-right_join-include-all-rows-from-y" class="nav-link" data-scroll-target="#right_join-include-all-rows-from-y"><code>right_join()</code>: include all rows from <code>y</code></a></li>
+  <li><a href="#full_join-include-all-rows-in-x-or-y-use-this-one-sparingly" id="toc-full_join-include-all-rows-in-x-or-y-use-this-one-sparingly" class="nav-link" data-scroll-target="#full_join-include-all-rows-in-x-or-y-use-this-one-sparingly"><code>full_join()</code>: include all rows in <code>x</code> or <code>y</code> (use this one sparingly!!)</a></li>
+  <li><a href="#semi_join-return-all-rows-from-x-with-match-in-y" id="toc-semi_join-return-all-rows-from-x-with-match-in-y" class="nav-link" data-scroll-target="#semi_join-return-all-rows-from-x-with-match-in-y"><code>semi_join()</code>: return all rows from <code>x</code> with match in <code>y</code></a></li>
+  <li><a href="#anti_join-return-all-rows-from-x-without-a-match-in-y" id="toc-anti_join-return-all-rows-from-x-without-a-match-in-y" class="nav-link" data-scroll-target="#anti_join-return-all-rows-from-x-without-a-match-in-y"><code>anti_join()</code>: return all rows from <code>x</code> without a match in <code>y</code></a></li>
+  </ul></li>
+  <li><a href="#prognosticator-success" id="toc-prognosticator-success" class="nav-link" data-scroll-target="#prognosticator-success">Prognosticator success</a></li>
+  <li><a href="#footnotes-2" id="toc-footnotes-2" class="nav-link" data-scroll-target="#footnotes-2"><strong>Footnotes</strong></a></li>
+  </ul></li>
+  <li><a href="#ae-05-pivoting-cornell-degrees" id="toc-ae-05-pivoting-cornell-degrees" class="nav-link" data-scroll-target="#ae-05-pivoting-cornell-degrees">AE 05: Pivoting Cornell Degrees</a>
+  <ul class="collapse">
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
+  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">Data</a></li>
+  <li><a href="#pivoting" id="toc-pivoting" class="nav-link" data-scroll-target="#pivoting">Pivoting</a></li>
+  <li><a href="#footnotes-3" id="toc-footnotes-3" class="nav-link" data-scroll-target="#footnotes-3"><strong>Footnotes</strong></a></li>
+  </ul></li>
+  <li><a href="#ae-06-data-types-and-classes" id="toc-ae-06-data-types-and-classes" class="nav-link" data-scroll-target="#ae-06-data-types-and-classes">AE 06: Data types and classes</a>
+  <ul class="collapse">
+  <li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">Packages</a></li>
+  <li><a href="#type-coercion" id="toc-type-coercion" class="nav-link" data-scroll-target="#type-coercion">Type coercion</a></li>
+  <li><a href="#hotel-bookings" id="toc-hotel-bookings" class="nav-link" data-scroll-target="#hotel-bookings">Hotel bookings</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CRH-</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+</section>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>You can add options to executable code like this</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+<section id="ae-01-bechdel-data-visualization" class="level1">
+<h1>AE 01: Bechdel + data visualization</h1>
+<p>In this mini analysis we work with the data used in the FiveThirtyEight story titled <a href="https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/">“The Dollar-And-Cents Case Against Hollywood’s Exclusion of Women”</a>.</p>
+<p>This analysis is about the <a href="https://en.wikipedia.org/wiki/Bechdel_test">Bechdel test</a>, a measure of the representation of women in fiction.</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>We start with loading the packages we’ll use: <strong>tidyverse</strong> for majority of the analysis and <strong>scales</strong> for pretty plot labels later on.</p>
+<pre><code>library(tidyverse)
+library(scales)</code></pre>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The data are stored as a CSV (comma separated values) file in the <code>data</code> folder of your repository. Let’s read it from there and save it as an object called <code>bechdel</code>.</p>
+<pre><code>bechdel &lt;- read_csv("data/bechdel.csv")</code></pre>
+</section>
+<section id="get-to-know-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="get-to-know-the-data">Get to know the data</h3>
+<p>We can use the <code>glimpse</code> function to get an overview (or “glimpse”) of the data.</p>
+<pre><code>glimpse(bechdel)
+
+Rows: 1,615
+Columns: 17
+$ title         &lt;chr&gt; "21 &amp; Over", "Dredd 3D", "12 Years a Slave", "2 Guns", "…
+$ year          &lt;dbl&gt; 2013, 2012, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20…
+$ gross_2013    &lt;dbl&gt; 67878146, 55078343, 211714070, 208105475, 190040426, 184…
+$ budget_2013   &lt;dbl&gt; 13000000, 45658735, 20000000, 61000000, 40000000, 225000…
+$ roi           &lt;dbl&gt; 5.221396, 1.206305, 10.585703, 3.411565, 4.751011, 0.818…
+$ binary        &lt;chr&gt; "FAIL", "PASS", "FAIL", "FAIL", "FAIL", "FAIL", "FAIL", …
+$ clean_test    &lt;chr&gt; "notalk", "ok", "notalk", "notalk", "men", "men", "notal…
+$ imdb          &lt;chr&gt; "tt1711425", "tt1343727", "tt2024544", "tt1272878", "tt0…
+$ test          &lt;chr&gt; "notalk", "ok-disagree", "notalk-disagree", "notalk", "m…
+$ budget        &lt;dbl&gt; 1.30e+07, 4.50e+07, 2.00e+07, 6.10e+07, 4.00e+07, 2.25e+…
+$ domgross      &lt;dbl&gt; 25682380, 13414714, 53107035, 75612460, 95020213, 383624…
+$ intgross      &lt;dbl&gt; 42195766, 40868994, 158607035, 132493015, 95020213, 1458…
+$ code          &lt;chr&gt; "2013FAIL", "2012PASS", "2013FAIL", "2013FAIL", "2013FAI…
+$ domgross_2013 &lt;dbl&gt; 25682380, 13611086, 53107035, 75612460, 95020213, 383624…
+$ intgross_2013 &lt;dbl&gt; 42195766, 41467257, 158607035, 132493015, 95020213, 1458…
+$ period_code   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ decade_code   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</code></pre>
+<ul>
+<li>What does each observation (row) in the data set represent?</li>
+</ul>
+<p>Each observation represents a <strong>different movie</strong>.</p>
+<ul>
+<li>How many observations (rows) are in the data set?</li>
+</ul>
+<p>There are 1615 movies in the dataset.</p>
+<ul>
+<li>How many variables (columns) are in the data set?</li>
+</ul>
+<p>There are 17 columns in the dataset.</p>
+</section>
+<section id="variables-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="variables-of-interest">Variables of interest</h3>
+<p>The variables we’ll focus on are the following:</p>
+<ul>
+<li><p><code>budget_2013</code>: Budget in 2013 inflation adjusted dollars.</p></li>
+<li><p><code>gross_2013</code>: Gross (US and international combined) in 2013 inflation adjusted dollars.</p></li>
+<li><p><code>roi</code>: Return on investment, calculated as the ratio of the gross to budget.</p></li>
+<li><p><code>clean_test</code>: Bechdel test result:</p>
+<ul>
+<li><p><code>ok</code> = passes test</p></li>
+<li><p><code>dubious</code></p></li>
+<li><p><code>men</code> = women only talk about men</p></li>
+<li><p><code>notalk</code> = women don’t talk to each other</p></li>
+<li><p><code>nowomen</code> = fewer than two women</p></li>
+</ul></li>
+<li><p><code>binary</code>: Bechdel Test PASS vs FAIL binary</p></li>
+</ul>
+<p>We will also use the <code>year</code> of release in data prep and <code>title</code> of movie to take a deeper look at some outliers.</p>
+<p>There are a few other variables in the dataset, but we won’t be using them in this analysis.</p>
+</section>
+</section>
+<section id="visualizing-data-with-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-data-with-ggplot2">Visualizing data with <code>ggplot2</code></h2>
+<p><strong>ggplot2</strong> is the package and <code>ggplot()</code> is the function in this package that is used to create a plot.</p>
+<ul>
+<li><code>ggplot()</code> creates the initial base coordinate system, and we will add layers to that base. We first specify the data set we will use with <code>data = bechdel</code>.</li>
+</ul>
+<!-- -->
+<pre><code>ggplot(data = bechdel)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-base-1.png" class="img-fluid"></p>
+<ul>
+<li>The <code>mapping</code> argument is paired with an aesthetic (<code>aes()</code>), which tells us how the variables in our data set should be mapped to the visual properties of the graph.</li>
+</ul>
+<!-- -->
+<pre><code>ggplot(data = bechdel, 
+       mapping = aes(x = budget_2013, y = gross_2013))</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-aesthetic-mapping-1.png" class="img-fluid"></p>
+<p>As we previously mentioned, we often omit the names of the first two arguments in R functions. So you’ll often see this written as:</p>
+<pre><code>ggplot(bechdel, 
+       aes(x = budget_2013, y = gross_2013))</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-simplified-call-1.png" class="img-fluid"></p>
+<p>Note that the result is exactly the same.</p>
+<ul>
+<li>The <code>geom_xx</code> function specifies the type of plot we want to use to represent the data. In the code below, we use <code>geom_point</code> which creates a plot where each observation is represented by a point.</li>
+</ul>
+<!-- -->
+<pre><code>ggplot(bechdel, 
+       aes(x = budget_2013, y = gross_2013)) +
+  geom_point()
+
+Warning: Removed 15 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-01-bechdel-viz-A_files/figure-html/plot-point-1.png" class="img-fluid"></p>
+<p>Note that this results in a warning as well. What does the warning mean?</p>
+</section>
+<section id="budget-vs.-gross-revenue" class="level2">
+<h2 class="anchored" data-anchor-id="budget-vs.-gross-revenue">Budget vs.&nbsp;gross revenue</h2>
+<section id="step-1---your-turn" class="level3">
+<h3 class="anchored" data-anchor-id="step-1---your-turn">Step 1 - Your turn</h3>
+<p>Modify the following plot to change the color of all points to a different color.</p>
+<p><strong>Tip</strong></p>
+<p>See <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" class="uri">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a> for many color options you can use by name in R or use the <a href="https://en.wikipedia.org/wiki/Web_colors">hex code</a> for a color of your choice.</p>
+</section>
+</section>
+</section>
+<section id="ae-02-visualizing-the-prognosticators" class="level1">
+<h1>AE 02: Visualizing the prognosticators</h1>
+<p>For all analyses, we’ll use the <strong>tidyverse</strong> packages.</p>
+<pre><code>library(tidyverse)</code></pre>
+<p>The dataset we will visualize is called <code>seers</code>.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn1">1</a></sup> It contains summary statistics for all known Groundhog Day forecasters.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn2">2</a></sup> Let’s <code>glimpse()</code> at it.</p>
+<pre><code># import data using readr::read_csv()
+seers &lt;- read_csv("data/prognosticators-sum-stats.csv")
+
+glimpse(seers)
+
+Rows: 114
+Columns: 18
+$ name                  &lt;chr&gt; "Arboretum Annie", "Beardsley Bart", "Bee Cave B…
+$ forecaster_type       &lt;chr&gt; "Groundhog", "Stuffed Prairie Dog", "Armadillo",…
+$ forecaster_simple     &lt;chr&gt; "Groundhog", "Other", "Other", "Other", "Other",…
+$ alive                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…
+$ climate_region        &lt;chr&gt; "South", "Northeast", "South", "Southeast", "Sou…
+$ town                  &lt;chr&gt; "Dallas", "Bridgeport", "Bee Cave", "Buckeye Lak…
+$ state                 &lt;chr&gt; "TX", "CT", "TX", "OH", "TX", "TX", "AL", "AL", …
+$ preds_n               &lt;dbl&gt; 3, 10, 11, 6, 5, 1, 1, 12, 2, 4, 12, 8, 1, 38, 4…
+$ preds_long_winter     &lt;dbl&gt; 1, 1, 2, 4, 3, 1, 1, 6, 2, 2, 7, 7, 0, 11, 4, 2,…
+$ preds_long_winter_pct &lt;dbl&gt; 0.3333333, 0.1000000, 0.1818182, 0.6666667, 0.60…
+$ preds_correct         &lt;dbl&gt; 2, 7, 7, 2, 2, 0, 0, 4, 0, 2, 2, 1, 0, 21, 0, 2,…
+$ preds_rate            &lt;dbl&gt; 0.6666667, 0.7000000, 0.6363636, 0.3333333, 0.40…
+$ temp_mean             &lt;dbl&gt; 50.18333, 31.02000, 51.42273, 54.35833, 52.44000…
+$ temp_hist             &lt;dbl&gt; 51.32000, 29.47633, 50.96455, 52.03056, 51.12667…
+$ temp_sd               &lt;dbl&gt; 3.909048, 4.118598, 3.909048, 3.713808, 3.909048…
+$ precip_mean           &lt;dbl&gt; 2.768333, 3.031000, 2.633636, 3.721667, 2.721000…
+$ precip_hist           &lt;dbl&gt; 2.5588889, 3.0695000, 2.5610303, 3.7380000, 2.54…
+$ precip_sd             &lt;dbl&gt; 0.9097207, 0.9641827, 0.9097207, 1.4612711, 0.90…</code></pre>
+<p>The variables are:</p>
+<ul>
+<li><p><code>name</code> - name of the prognosticator</p></li>
+<li><p><code>forecaster_type</code> - what kind of animal or thing is the prognosticator?</p></li>
+<li><p><code>forecaster_simple</code> - a simplified version that lumps together the least-frequently appearing types of prognosticators</p></li>
+<li><p><code>alive</code> - is the prognosticator an animate (alive) being?<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn3">3</a></sup></p></li>
+<li><p><code>climate_region</code> - the <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/regional/mapping">NOAA climate region</a> in which the prognosticator is located.</p></li>
+<li><p><code>town</code> - self-explanatory</p></li>
+<li><p><code>state</code> - state (or territory) where prognosticator is located</p></li>
+<li><p><code>preds_n</code> - number of predictions in the database</p></li>
+<li><p><code>preds_long_winter</code> - number of predictions for a “Late Winter” (as opposed to “Early Spring”)</p></li>
+<li><p><code>preds_long_winter_pct</code> - percentage of predictions for a “Late Winter”</p></li>
+<li><p><code>preds_correct</code> - number of correct predictions<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fn4">4</a></sup></p></li>
+<li><p><code>preds_rate</code> - proportion of predictions that are correct</p></li>
+<li><p><code>temp_mean</code> - average temperature (in Fahrenheit) in February and March in the climate region across all prognostication years</p></li>
+<li><p><code>temp_hist</code> - average of the rolling 15-year historic average temperature in February and March across all prognostication years</p></li>
+<li><p><code>temp_sd</code> - standard deviation of average February and March temperatures across all prognostication years</p></li>
+<li><p><code>precip_mean</code> - average amount of precipitation in February and March across all prognostication years (measured in rainfall inches)</p></li>
+<li><p><code>precip_hist</code> average of the rolling 15-year historic average precipitation in February and March across all prognostication years</p></li>
+<li><p><code>precip_sd</code> - standard deviation of average February and March precipitation across all prognostication years</p></li>
+</ul>
+</section>
+<section id="visualizing-prediction-success-rate---demo" class="level1">
+<h1>Visualizing prediction success rate - Demo</h1>
+<section id="single-variable" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable">Single variable</h2>
+<p>Create visualizations of the distribution of <code>preds_rate</code> for the prognosticators.</p>
+<ol type="1">
+<li>Make a histogram. Set an appropriate binwidth.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(seers, aes(x = preds_rate)) +
+  geom_histogram(binwidth = 0.02)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-1.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>Make a boxplot.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(seers, aes(x = preds_rate)) +
+  geom_boxplot()</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/boxplot-preds-rate-1.png" class="img-fluid"></p>
+<ol start="3" type="1">
+<li><p>Based on these, determine if each of the following statements about the shape of the distribution is true or false.</p>
+<ul>
+<li><p>The distribution of prediction success rate in this sample is left skewed. <strong>FALSE</strong></p></li>
+<li><p>The distribution of prediction success rate in this sample is unimodal. <strong>FALSE</strong></p></li>
+</ul></li>
+</ol>
+</section>
+<section id="two-variables" class="level2">
+<h2 class="anchored" data-anchor-id="two-variables">Two variables</h2>
+<p>Create visualizations of the distribution of <code>preds_rate</code> by <code>alive</code> (whether or not the prognosticator is alive).</p>
+<ol start="4" type="1">
+<li>Make a single histogram. Set an appropriate binwidth.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = preds_rate, fill = alive)
+) +
+  geom_histogram(binwidth = 0.02, alpha = 0.5, color = "black")</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="5" type="1">
+<li>Use multiple histograms via faceting, one for each type. Set an appropriate binwidth, add color as you see fit, and turn off legends if not needed.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = preds_rate, fill = alive)
+) +
+  geom_histogram(binwidth = 0.02, show.legend = FALSE) +
+  facet_wrap(vars(alive), ncol = 1)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/histogram-preds-rate-alive-facet-1.png" class="img-fluid"></p>
+<ol start="6" type="1">
+<li>Use side-by-side box plots. Add color as you see fit and turn off legends if not needed.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, fill = alive)
+) +
+  geom_boxplot(show.legend = FALSE)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/boxplot-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="7" type="1">
+<li>Use density plots. Add color as you see fit.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = preds_rate, fill = alive)
+) +
+  geom_density(alpha = 0.5)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/density-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="8" type="1">
+<li>Use violin plots. Add color as you see fit and turn off legends if not needed.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, fill = alive)
+) +
+  geom_violin(alpha = 0.5, show.legend = FALSE)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/violin-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="9" type="1">
+<li>Make a jittered scatter plot. Add color as you see fit and turn off legends if not needed.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, color = alive)
+) +
+  geom_jitter(show.legend = FALSE)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/jitter-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="10" type="1">
+<li>Use beeswarm plots. Add color as you see fit and turn off legends if not needed.</li>
+</ol>
+<!-- -->
+<pre><code>library(ggbeeswarm)
+
+ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, color = alive)
+) +
+  geom_beeswarm(show.legend = FALSE)</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/beeswarm-preds-rate-alive-1.png" class="img-fluid"></p>
+<ol start="11" type="1">
+<li>Use multiple geoms on a single plot. Be deliberate about the order of plotting. Change the theme and the color scale of the plot. Finally, add informative labels.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, color = alive)
+) +
+  geom_beeswarm(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+  scale_color_viridis_d(option = "D", end = 0.8) +
+  scale_y_continuous(labels = scales::label_percent()) +
+  theme_minimal() +
+  labs(
+    x = "Is the prognosticator alive?",
+    y = "Prediction accuracy for late winter/early spring",
+    title = "Accuracy of prognosticators predicting the coming season",
+    subtitle = "By living status of prognosticator"
+  )</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/multi-geoms-1.png" class="img-fluid"></p>
+</section>
+<section id="multiple-variables" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-variables">Multiple variables</h2>
+<ol start="12" type="1">
+<li>Facet the plot you created in the previous exercise by <code>forecaster_simple</code>. Adjust labels accordingly.</li>
+</ol>
+<!-- -->
+<pre><code>ggplot(
+  seers,
+  aes(x = alive, y = preds_rate, color = alive)
+) +
+  geom_beeswarm(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+  scale_color_viridis_d(option = "D", end = 0.8) +
+  scale_y_continuous(labels = scales::label_percent()) +
+  facet_wrap(vars(forecaster_simple)) +
+  theme_minimal() +
+  labs(
+    x = "Is the prognosticator alive?",
+    y = "Prediction accuracy for late winter/early spring",
+    title = "Accuracy of prognosticators predicting the coming season",
+    subtitle = "By type and living status of prognosticator"
+  )</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A_files/figure-html/multi-geoms-facet-1.png" class="img-fluid"></p>
+<p>Before you continue, let’s turn off all warnings the code chunks generate and resize all figures. We’ll do this by editing the YAML.</p>
+</section>
+<section id="visualizing-other-variables---your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-other-variables---your-turn">Visualizing other variables - Your turn!</h2>
+<ol start="13" type="1">
+<li>Pick a single categorical variable from the data set and make a bar plot of its distribution.</li>
+</ol>
+<!-- -->
+<pre><code># add code here</code></pre>
+<ol start="14" type="1">
+<li>Pick two categorical variables and make a visualization to visualize the relationship between the two variables. Along with your code and output, provide an interpretation of the visualization.</li>
+</ol>
+<!-- -->
+<pre><code># add code here</code></pre>
+<p>Interpretation goes here…</p>
+<ol start="15" type="1">
+<li>Make another plot that uses at least three variables. At least one should be numeric and at least one categorical. In 1-2 sentences, describe what the plot shows about the relationships between the variables you plotted. Don’t forget to label your code chunk.</li>
+</ol>
+<!-- -->
+<pre><code># add code here</code></pre>
+<p>Interpretation goes here…</p>
+</section>
+<section id="footnotes" class="level2">
+<h2 class="anchored" data-anchor-id="footnotes"><strong>Footnotes</strong></h2>
+<ol type="1">
+<li><p>I would prefer <a href="https://www.groundhog.org/prognostication"><code>prognosticators</code></a>, but I had way too many typos preparing these materials to make you all use it.<a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref1">↩︎</a></p></li>
+<li><p>Source: <a href="https://countdowntogroundhogday.com/groundhogs-from-around-the-world">Countdown to Groundhog Day</a>. Application exercise inspired by <a href="https://fivethirtyeight.com/features/groundhogs-do-not-make-good-meteorologists/">Groundhogs Do Not Make Good Meteorologists</a> originally published on FiveThirtyEight.<a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref2">↩︎</a></p></li>
+<li><p>Prognosticators labeled as Animatronic/Puppet/Statue/Stuffed/Taxidermied are classified as not alive.<a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref3">↩︎</a></p></li>
+<li><p>We adopt the same definition as FiveThirtyEight. An “Early Spring” is defined as any year in which the average temperature in either February or March was higher than the historic average. A “Long Winter” was when the average temperature in both months was lower than or the same as the historical average.<a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html#fnref4">↩︎</a></p></li>
+</ol>
+</section>
+</section>
+<section id="ae-03-wrangling-professor-evaluations" class="level1">
+<h1>AE 03: Wrangling professor evaluations</h1>
+<p>To demonstrate data wrangling we will use <code>evals</code>. It contains anonymized information on end-of-semester student evaluations for 463 courses taught by a sample of 94 professors from the University of Texas at Austin.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fn1">1</a></sup></p>
+<pre><code>library(tidyverse)
+
+evals &lt;- read_csv("data/course-evals.csv")</code></pre>
+<p>The data frame has over 400 observations (rows), 463 observations to be exact, so we will <strong>not</strong> view the entire data frame. Instead we’ll use the commands below to help us explore the data.</p>
+<pre><code>glimpse(evals)
+
+Rows: 463
+Columns: 23
+$ course_id     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…
+$ prof_id       &lt;dbl&gt; 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5,…
+$ score         &lt;dbl&gt; 4.7, 4.1, 3.9, 4.8, 4.6, 4.3, 2.8, 4.1, 3.4, 4.5, 3.8, 4…
+$ rank          &lt;chr&gt; "tenure track", "tenure track", "tenure track", "tenure …
+$ ethnicity     &lt;chr&gt; "minority", "minority", "minority", "minority", "not min…
+$ gender        &lt;chr&gt; "female", "female", "female", "female", "male", "male", …
+$ language      &lt;chr&gt; "english", "english", "english", "english", "english", "…
+$ age           &lt;dbl&gt; 36, 36, 36, 36, 59, 59, 59, 51, 51, 40, 40, 40, 40, 40, …
+$ cls_perc_eval &lt;dbl&gt; 55.81395, 68.80000, 60.80000, 62.60163, 85.00000, 87.500…
+$ cls_did_eval  &lt;dbl&gt; 24, 86, 76, 77, 17, 35, 39, 55, 111, 40, 24, 24, 17, 14,…
+$ cls_students  &lt;dbl&gt; 43, 125, 125, 123, 20, 40, 44, 55, 195, 46, 27, 25, 20, …
+$ cls_level     &lt;chr&gt; "upper", "upper", "upper", "upper", "upper", "upper", "u…
+$ cls_profs     &lt;chr&gt; "single", "single", "single", "single", "multiple", "mul…
+$ cls_credits   &lt;chr&gt; "multi credit", "multi credit", "multi credit", "multi c…
+$ bty_f1lower   &lt;dbl&gt; 5, 5, 5, 5, 4, 4, 4, 5, 5, 2, 2, 2, 2, 2, 2, 2, 2, 7, 7,…
+$ bty_f1upper   &lt;dbl&gt; 7, 7, 7, 7, 4, 4, 4, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9,…
+$ bty_f2upper   &lt;dbl&gt; 6, 6, 6, 6, 2, 2, 2, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9,…
+$ bty_m1lower   &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7,…
+$ bty_m1upper   &lt;dbl&gt; 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 6, 6,…
+$ bty_m2upper   &lt;dbl&gt; 6, 6, 6, 6, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6,…
+$ bty_avg       &lt;dbl&gt; 5.000, 5.000, 5.000, 5.000, 3.000, 3.000, 3.000, 3.333, …
+$ pic_outfit    &lt;chr&gt; "not formal", "not formal", "not formal", "not formal", …
+$ pic_color     &lt;chr&gt; "color", "color", "color", "color", "color", "color", "c…
+
+names(evals)
+
+ [1] "course_id"     "prof_id"       "score"         "rank"         
+ [5] "ethnicity"     "gender"        "language"      "age"          
+ [9] "cls_perc_eval" "cls_did_eval"  "cls_students"  "cls_level"    
+[13] "cls_profs"     "cls_credits"   "bty_f1lower"   "bty_f1upper"  
+[17] "bty_f2upper"   "bty_m1lower"   "bty_m1upper"   "bty_m2upper"  
+[21] "bty_avg"       "pic_outfit"    "pic_color"    
+
+head(evals)
+
+# A tibble: 6 × 23
+  course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+5         5       2   4.6 tenured   not mi… male   english    59    85        17
+6         6       2   4.3 tenured   not mi… male   english    59    87.5      35
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<p>The <code>head()</code> function returns “A tibble: 6 x 23” and then the first six rows of the <code>evals</code> data.</p>
+</section>
+<section id="tibble-vs.-data-frame" class="level1">
+<h1>Tibble vs.&nbsp;data frame</h1>
+<p>A <strong>tibble</strong> is an opinionated version of the <code>R</code> data frame. In other words, all tibbles are data frames, but not all data frames are tibbles!</p>
+<p>There are two main differences between a tibble and a data frame:</p>
+<ol type="1">
+<li><p>When you print a tibble, the first ten rows and all of the columns that fit on the screen will display, along with the type of each column.</p>
+<p>Let’s look at the differences in the output when we type <code>evals</code> (tibble) in the console versus typing <code>cars</code> (data frame) in the console.</p></li>
+<li><p>Second, tibbles are somewhat more strict than data frames when it comes to subsetting data. You will get a warning message if you try to access a variable that doesn’t exist in a tibble. You will get <code>NULL</code> if you try to access a variable that doesn’t exist in a data frame.</p></li>
+</ol>
+<!-- -->
+<pre><code>evals$apple
+
+Warning: Unknown or uninitialised column: `apple`.
+
+NULL
+
+cars$apple
+
+NULL</code></pre>
+</section>
+<section id="data-wrangling-with-dplyr" class="level1">
+<h1>Data wrangling with <code>dplyr</code></h1>
+<p><strong>dplyr</strong> is the primary package in the tidyverse for data wrangling. <a href="https://dplyr.tidyverse.org/">Click here</a> for the dplyr reference page. <a href="https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf">Click here</a> for the data transformation cheatsheet.</p>
+<p>Quick summary of key dplyr functions<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fn2">2</a></sup>:</p>
+<p><strong>Rows:</strong></p>
+<ul>
+<li><p><code>filter()</code>:chooses rows based on column values.</p></li>
+<li><p><code>slice()</code>: chooses rows based on location.</p></li>
+<li><p><code>arrange()</code>: changes the order of the rows</p></li>
+<li><p><code>sample_n()</code>: take a random subset of the rows</p></li>
+</ul>
+<p><strong>Columns:</strong></p>
+<ul>
+<li><p><code>select()</code>: changes whether or not a column is included.</p></li>
+<li><p><code>rename()</code>: changes the name of columns.</p></li>
+<li><p><code>mutate()</code>: changes the values of columns and creates new columns.</p></li>
+</ul>
+<p><strong>Groups of rows:</strong></p>
+<ul>
+<li><p><code>summarize()</code>: collapses a group into a single row.</p></li>
+<li><p><code>count()</code>: count unique values of one or more variables.</p></li>
+<li><p><code>group_by()</code>: perform calculations separately for each value of a variable</p></li>
+</ul>
+<section id="select" class="level2">
+<h2 class="anchored" data-anchor-id="select"><code>select()</code></h2>
+<ul>
+<li>Demo: Make a data frame that only contains the variables <code>score</code> and <code>cls_students</code>.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(score, cls_students)
+
+# A tibble: 463 × 2
+   score cls_students
+   &lt;dbl&gt;        &lt;dbl&gt;
+ 1   4.7           43
+ 2   4.1          125
+ 3   3.9          125
+ 4   4.8          123
+ 5   4.6           20
+ 6   4.3           40
+ 7   2.8           44
+ 8   4.1           55
+ 9   3.4          195
+10   4.5           46
+# … with 453 more rows</code></pre>
+<ul>
+<li>Demo: Make a data frame that keeps every variable except <code>cls_students</code>.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(-cls_students)
+
+# A tibble: 463 × 22
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1         1       1   4.7 tenure … minori… female english    36    55.8      24
+ 2         2       1   4.1 tenure … minori… female english    36    68.8      86
+ 3         3       1   3.9 tenure … minori… female english    36    60.8      76
+ 4         4       1   4.8 tenure … minori… female english    36    62.6      77
+ 5         5       2   4.6 tenured  not mi… male   english    59    85        17
+ 6         6       2   4.3 tenured  not mi… male   english    59    87.5      35
+ 7         7       2   2.8 tenured  not mi… male   english    59    88.6      39
+ 8         8       3   4.1 tenured  not mi… male   english    51   100        55
+ 9         9       3   3.4 tenured  not mi… male   english    51    56.9     111
+10        10       4   4.5 tenured  not mi… female english    40    87.0      40
+# … with 453 more rows, 12 more variables: cls_level &lt;chr&gt;, cls_profs &lt;chr&gt;,
+#   cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;, bty_f2upper &lt;dbl&gt;,
+#   bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;, bty_avg &lt;dbl&gt;,
+#   pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable names
+#   ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<ul>
+<li>Demo: Make a data frame that includes all variables between <code>score</code> through <code>age</code> (inclusive).</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(score:age)
+
+# A tibble: 463 × 6
+   score rank         ethnicity    gender language   age
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+ 1   4.7 tenure track minority     female english     36
+ 2   4.1 tenure track minority     female english     36
+ 3   3.9 tenure track minority     female english     36
+ 4   4.8 tenure track minority     female english     36
+ 5   4.6 tenured      not minority male   english     59
+ 6   4.3 tenured      not minority male   english     59
+ 7   2.8 tenured      not minority male   english     59
+ 8   4.1 tenured      not minority male   english     51
+ 9   3.4 tenured      not minority male   english     51
+10   4.5 tenured      not minority female english     40
+# … with 453 more rows</code></pre>
+<ul>
+<li>Demo: Use the <code>select</code> helper <code>contains()</code> to make a data frame that includes the variables associated with the class, i.e., contains the string <code>"cls\_"</code> in the name.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(contains("cls_"))
+
+# A tibble: 463 × 6
+   cls_perc_eval cls_did_eval cls_students cls_level cls_profs cls_credits 
+           &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;       
+ 1          55.8           24           43 upper     single    multi credit
+ 2          68.8           86          125 upper     single    multi credit
+ 3          60.8           76          125 upper     single    multi credit
+ 4          62.6           77          123 upper     single    multi credit
+ 5          85             17           20 upper     multiple  multi credit
+ 6          87.5           35           40 upper     multiple  multi credit
+ 7          88.6           39           44 upper     multiple  multi credit
+ 8         100             55           55 upper     single    multi credit
+ 9          56.9          111          195 upper     single    multi credit
+10          87.0           40           46 upper     single    multi credit
+# … with 453 more rows</code></pre>
+</section>
+<section id="the-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipe">The pipe</h2>
+<p>Before working with more data wrangling functions, let’s formally introduce the pipe. The <strong>pipe</strong>, <code>|&gt;</code>, is an operator (a tool) for passing information from one process to another. We will use <code>|&gt;</code> mainly in data pipelines to pass the output of the previous line of code as the first input of the next line of code.</p>
+<p>When reading code “in English”, say “and then” whenever you see a pipe.</p>
+<ul>
+<li><strong>Your turn (4 minutes):</strong> Run the following chunk and observe its output. Then, come up with a different way of obtaining the same output.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(score, rank) |&gt;
+  head()
+
+# A tibble: 6 × 2
+  score rank        
+  &lt;dbl&gt; &lt;chr&gt;       
+1   4.7 tenure track
+2   4.1 tenure track
+3   3.9 tenure track
+4   4.8 tenure track
+5   4.6 tenured     
+6   4.3 tenured     </code></pre>
+</section>
+<section id="slice" class="level2">
+<h2 class="anchored" data-anchor-id="slice"><code>slice()</code></h2>
+<ul>
+<li>Demo: Display the first five rows of the <code>evals</code> data frame.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  slice(1:5)
+
+# A tibble: 5 × 23
+  course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+5         5       2   4.6 tenured   not mi… male   english    59    85        17
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+# with slice_head()
+evals |&gt;
+  slice_head(n = 5)
+
+# A tibble: 5 × 23
+  course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1         1       1   4.7 tenure t… minori… female english    36    55.8      24
+2         2       1   4.1 tenure t… minori… female english    36    68.8      86
+3         3       1   3.9 tenure t… minori… female english    36    60.8      76
+4         4       1   4.8 tenure t… minori… female english    36    62.6      77
+5         5       2   4.6 tenured   not mi… male   english    59    85        17
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<ul>
+<li>Demo: Display the last two rows of the <code>evals</code> data frame.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  slice((n() - 1):n())
+
+# A tibble: 2 × 23
+  course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1       462      94   4.4 tenure t… minori… female non-en…    42    81.8      54
+2       463      94   4.1 tenure t… minori… female non-en…    42    80        28
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval
+
+# with slice_tail()
+evals |&gt;
+  slice_tail(n = 2)
+
+# A tibble: 2 × 23
+  course_id prof_id score rank      ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1       462      94   4.4 tenure t… minori… female non-en…    42    81.8      54
+2       463      94   4.1 tenure t… minori… female non-en…    42    80        28
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+</section>
+<section id="arrange" class="level2">
+<h2 class="anchored" data-anchor-id="arrange"><code>arrange()</code></h2>
+<ul>
+<li>Demo: Let’s arrange the data by score, so the courses with the lowest scores will be at the top of the data frame.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  arrange(score)
+
+# A tibble: 463 × 23
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       162      30   2.3 tenure … not mi… female english    41    83.3      10
+ 2       335      68   2.4 tenured  not mi… male   english    60    71.9      23
+ 3        40       8   2.5 tenured  not mi… female english    51    80        24
+ 4       337      68   2.5 tenured  not mi… male   english    60    62.5      10
+ 5       329      66   2.7 tenured  not mi… male   english    64    81.8      18
+ 6       376      76   2.7 tenured  minori… female english    43    48.9      93
+ 7         7       2   2.8 tenured  not mi… male   english    59    88.6      39
+ 8       185      34   2.8 tenure … minori… female english    47    92.3      24
+ 9       434      88   2.8 tenured  not mi… male   english    62    40.9      61
+10        79      15   2.9 tenure … not mi… female english    37    82.1      23
+# … with 453 more rows, 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<ul>
+<li>Demo: Now let’s arrange the data by descending score, so the evals with the highest scores will be at the top.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  arrange(desc(score))
+
+# A tibble: 463 × 23
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1        54      10     5 teaching not mi… male   english    47    90.9      10
+ 2        57      10     5 teaching not mi… male   english    47    83.3      15
+ 3        59      10     5 teaching not mi… male   english    47    80        16
+ 4       103      19     5 tenured  not mi… female english    46    93.3      14
+ 5       108      19     5 tenured  not mi… female english    46   100        15
+ 6       349      71     5 teaching minori… male   english    50    90.9      20
+ 7       356      71     5 teaching minori… male   english    50    95.2      20
+ 8       406      82     5 tenured  not mi… male   english    57    40         6
+ 9       420      85     5 teaching not mi… male   english    58   100        21
+10       421      85     5 teaching not mi… male   english    58    85.7      18
+# … with 453 more rows, 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<ul>
+<li><strong>Your turn (5 minutes):</strong> Create a data frame that only includes the evaluation score (<code>score</code>), faculty rank (<code>rank</code>), and average beauty rating of the professor (<code>bty_avg</code>) for the course with the highest evaluation score. What is the average beauty rating (<code>bty_avg</code>) for this professor?</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  select(score, rank, bty_avg) |&gt;
+  arrange(desc(score), desc(bty_avg)) |&gt;
+  slice(1)
+
+# A tibble: 1 × 3
+  score rank     bty_avg
+  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+1     5 teaching    7.83</code></pre>
+</section>
+<section id="filter" class="level2">
+<h2 class="anchored" data-anchor-id="filter"><code>filter()</code></h2>
+<ul>
+<li>Demo: Filter the data frame by selecting the rows where the faculty is on the teaching-track.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  filter(rank == "teaching")
+
+# A tibble: 102 × 23
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1        50      10   4   teaching not mi… male   english    47    84.2      16
+ 2        51      10   4.3 teaching not mi… male   english    47    75        12
+ 3        52      10   4.4 teaching not mi… male   english    47    93.3      14
+ 4        53      10   4.5 teaching not mi… male   english    47    95.7      22
+ 5        54      10   5   teaching not mi… male   english    47    90.9      10
+ 6        55      10   4.9 teaching not mi… male   english    47    58.6      17
+ 7        56      10   4.6 teaching not mi… male   english    47    76.2      16
+ 8        57      10   5   teaching not mi… male   english    47    83.3      15
+ 9        58      10   4.7 teaching not mi… male   english    47    84.2      16
+10        59      10   5   teaching not mi… male   english    47    80        16
+# … with 92 more rows, 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<ul>
+<li>Demo: We can also filter using more than one condition. Here we select all rows where the faculty is teaching-track and the evaluation score is greater than 3.5</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  filter(rank == "teaching", score &gt; 3.5)
+
+# A tibble: 87 × 23
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1        50      10   4   teaching not mi… male   english    47    84.2      16
+ 2        51      10   4.3 teaching not mi… male   english    47    75        12
+ 3        52      10   4.4 teaching not mi… male   english    47    93.3      14
+ 4        53      10   4.5 teaching not mi… male   english    47    95.7      22
+ 5        54      10   5   teaching not mi… male   english    47    90.9      10
+ 6        55      10   4.9 teaching not mi… male   english    47    58.6      17
+ 7        56      10   4.6 teaching not mi… male   english    47    76.2      16
+ 8        57      10   5   teaching not mi… male   english    47    83.3      15
+ 9        58      10   4.7 teaching not mi… male   english    47    84.2      16
+10        59      10   5   teaching not mi… male   english    47    80        16
+# … with 77 more rows, 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+<p>We can do more complex tasks using logical operators:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">operator</th>
+<th style="text-align: left;">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">is less than?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">is less than or equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">is greater than?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">is greater than or equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">is exactly equal to?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!=</code></td>
+<td style="text-align: left;">is not equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x &amp; y</code></td>
+<td style="text-align: left;">is x AND y?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>x | y</code></td>
+<td style="text-align: left;">is x OR y?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>is.na(x)</code></td>
+<td style="text-align: left;">is x NA?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!is.na(x)</code></td>
+<td style="text-align: left;">is x not NA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x %in% y</code></td>
+<td style="text-align: left;">is x in y?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!(x %in% y)</code></td>
+<td style="text-align: left;">is x not in y?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>!x</code></td>
+<td style="text-align: left;">is not x?</td>
+</tr>
+</tbody>
+</table>
+<p>The final operator only makes sense if <code>x</code> is logical (TRUE / FALSE).</p>
+<ul>
+<li><strong>Your turn (4 minutes):</strong> Describe what the code is doing in words.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  filter(
+    rank %in% c("tenure track", "tenure"),
+    score &gt; 3.5, bty_avg &gt; 6
+  )
+
+# A tibble: 20 × 23
+   course_id prof_id score rank     ethni…¹ gender langu…²   age cls_p…³ cls_d…⁴
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1        18       5   4.8 tenure … not mi… female english    31    87.5      42
+ 2        19       5   4.6 tenure … not mi… female english    31    90.9      40
+ 3        20       5   4.6 tenure … not mi… female english    31    79.2      38
+ 4        21       5   4.9 tenure … not mi… female english    31    88.9      40
+ 5        22       5   4.6 tenure … not mi… female english    31    88.1      52
+ 6        23       5   4.5 tenure … not mi… female english    31    56.3      49
+ 7       140      25   4.8 tenure … not mi… female english    34    76.9      20
+ 8       141      25   4.1 tenure … not mi… female english    34    82.5      33
+ 9       238      45   4.9 tenure … not mi… male   english    33    96.8      30
+10       240      45   3.7 tenure … not mi… male   english    33    86.7      13
+11       289      54   4.1 tenure … not mi… male   english    34    80        16
+12       290      54   3.6 tenure … not mi… male   english    34    57.1      20
+13       440      89   3.6 tenure … minori… female english    35    33.3      20
+14       441      89   3.7 tenure … minori… female english    35    39.8      43
+15       454      93   4.5 tenure … not mi… male   english    32    74.2      98
+16       455      93   4.5 tenure … not mi… male   english    32    87.4     111
+17       456      93   4.5 tenure … not mi… male   english    32    72.9      62
+18       457      93   4.6 tenure … not mi… male   english    32    75.2      76
+19       458      93   4.1 tenure … not mi… male   english    32    42.9       9
+20       459      93   4.5 tenure … not mi… male   english    32    60.5      52
+# … with 13 more variables: cls_students &lt;dbl&gt;, cls_level &lt;chr&gt;,
+#   cls_profs &lt;chr&gt;, cls_credits &lt;chr&gt;, bty_f1lower &lt;dbl&gt;, bty_f1upper &lt;dbl&gt;,
+#   bty_f2upper &lt;dbl&gt;, bty_m1lower &lt;dbl&gt;, bty_m1upper &lt;dbl&gt;, bty_m2upper &lt;dbl&gt;,
+#   bty_avg &lt;dbl&gt;, pic_outfit &lt;chr&gt;, pic_color &lt;chr&gt;, and abbreviated variable
+#   names ¹​ethnicity, ²​language, ³​cls_perc_eval, ⁴​cls_did_eval</code></pre>
+</section>
+<section id="count" class="level2">
+<h2 class="anchored" data-anchor-id="count"><code>count()</code></h2>
+<ul>
+<li>Demo: Create a frequency table of the ethnicity of the evaluated professors.</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  count(ethnicity)
+
+# A tibble: 2 × 2
+  ethnicity        n
+  &lt;chr&gt;        &lt;int&gt;
+1 minority        64
+2 not minority   399</code></pre>
+<ul>
+<li>Demo: Which faculty rank had the fewest number of evals? How many evals were there for that group?</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  count(rank) |&gt;
+  filter(n == min(n))
+
+# A tibble: 1 × 2
+  rank         n
+  &lt;chr&gt;    &lt;int&gt;
+1 teaching   102</code></pre>
+<ul>
+<li><strong>Your turn (5 minutes):</strong> Which type of faculty (based on rank, gender, and ethnicity) is most highly represented in this dataset? How many courses did they teach in this sample?</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  count(rank, gender, ethnicity) |&gt;
+  filter(n == max(n))
+
+# A tibble: 1 × 4
+  rank    gender ethnicity        n
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;int&gt;
+1 tenured male   not minority   162</code></pre>
+</section>
+<section id="mutate" class="level2">
+<h2 class="anchored" data-anchor-id="mutate"><code>mutate()</code></h2>
+<p>Use <code>mutate()</code> to create a new variable.</p>
+<ul>
+<li>Demo: In the code chunk below, we calculate difference in the average beauty ratings by gender of the rater (<code>bty_f*</code> vs <code>bty_m*</code>).</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  mutate(
+    bty_avg_f = (bty_f1lower + bty_f1upper + bty_f2upper) / 3,
+    bty_avg_m = (bty_m1lower + bty_m1upper + bty_m2upper) / 3,
+    bty_avg_diff = bty_avg_f - bty_avg_m
+  ) |&gt;
+  select(score, bty_avg_f, bty_avg_m, bty_avg_diff)
+
+# A tibble: 463 × 4
+   score bty_avg_f bty_avg_m bty_avg_diff
+   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+ 1   4.7      6         4           2    
+ 2   4.1      6         4           2    
+ 3   3.9      6         4           2    
+ 4   4.8      6         4           2    
+ 5   4.6      3.33      2.67        0.667
+ 6   4.3      3.33      2.67        0.667
+ 7   2.8      3.33      2.67        0.667
+ 8   4.1      4         2.67        1.33 
+ 9   3.4      4         2.67        1.33 
+10   4.5      3.67      2.67        1    
+# … with 453 more rows</code></pre>
+<ul>
+<li><strong>Your turn (4 minutes):</strong> Create a new variable to calculate the percentage of evals for each faculty rank. What percentage of evals were for teaching-track faculty?</li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  count(rank) |&gt;
+  mutate(perc = n / sum(n) * 100)
+
+# A tibble: 3 × 3
+  rank             n  perc
+  &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt;
+1 teaching       102  22.0
+2 tenure track   108  23.3
+3 tenured        253  54.6</code></pre>
+</section>
+<section id="summarize" class="level2">
+<h2 class="anchored" data-anchor-id="summarize"><code>summarize()</code></h2>
+<p><code>summarize()</code> collapses the rows into summary statistics and removes columns irrelevant to the calculation.</p>
+<p>Be sure to name your columns!</p>
+<pre><code>evals |&gt;
+  summarize(mean_score = mean(score))
+
+# A tibble: 1 × 1
+  mean_score
+       &lt;dbl&gt;
+1         NA</code></pre>
+<p><strong>Question: Why did this code return <code>NA</code>?</strong></p>
+<p>Let’s fix it!</p>
+<pre><code>evals |&gt;
+  summarize(mean_score = mean(score, na.rm = TRUE))
+
+# A tibble: 1 × 1
+  mean_score
+       &lt;dbl&gt;
+1       4.18</code></pre>
+</section>
+<section id="group_by" class="level2">
+<h2 class="anchored" data-anchor-id="group_by"><code>group_by()</code></h2>
+<p><code>group_by()</code> is used for grouped operations. It’s very powerful when paired with <code>summarize()</code> to calculate summary statistics by group.</p>
+<p>Here we find the mean and standard deviation of evaluation scores for each professor in the sample.</p>
+<pre><code>evals |&gt;
+  group_by(prof_id) |&gt;
+  summarize(
+    mean_score = mean(score, na.rm = TRUE),
+    sd_score = sd(score, na.rm = TRUE)
+  )
+
+# A tibble: 94 × 3
+   prof_id mean_score sd_score
+     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+ 1       1       4.38    0.443
+ 2       2       3.9     0.964
+ 3       3       3.75    0.495
+ 4       4       4.3     0.321
+ 5       5       4.67    0.151
+ 6       6       4.63    0.180
+ 7       7       4.1     0.354
+ 8       8       4       0.766
+ 9       9       4.61    0.177
+10      10       4.64    0.344
+# … with 84 more rows</code></pre>
+<ul>
+<li><strong>Your turn (4 minutes):</strong> What is the median evaluation score for each faculty rank? <em>Which type of faculty has the lowest median evaluation score?</em></li>
+</ul>
+<!-- -->
+<pre><code>evals |&gt;
+  group_by(rank) |&gt;
+  summarize(
+    med_score = median(score, na.rm = TRUE)
+  )
+
+# A tibble: 3 × 2
+  rank         med_score
+  &lt;chr&gt;            &lt;dbl&gt;
+1 teaching          4.4 
+2 tenure track      4.35
+3 tenured           4.2 </code></pre>
+</section>
+</section>
+<section id="additional-practice" class="level1">
+<h1>Additional Practice</h1>
+<ol type="1">
+<li>Create a new dataset that only contains evals that do not have a missing evaluation score. Include the columns <code>prof_id</code>, <code>score</code>, <code>rank</code>, <code>age</code>, <code>bty_avg</code>, and <code>bty_avg_diff</code> (the difference in the average beauty score for female and male raters). <em>Hint: Note you may need to use <code>mutate()</code> to make one or more of these variables.</em></li>
+</ol>
+<!-- -->
+<pre><code>evals |&gt;
+  # drop rows with NAs for score
+  drop_na(score) |&gt;
+  # create required variable
+  mutate(
+    bty_avg_f = (bty_f1lower + bty_f1upper + bty_f2upper) / 3,
+    bty_avg_m = (bty_m1lower + bty_m1upper + bty_m2upper) / 3,
+    bty_avg_diff = bty_avg_f - bty_avg_m
+  ) |&gt;
+  # keep only requested columns
+  select(prof_id, score, rank, age, bty_avg, bty_avg_diff)
+
+# A tibble: 449 × 6
+   prof_id score rank           age bty_avg bty_avg_diff
+     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+ 1       1   4.7 tenure track    36    5           2    
+ 2       1   4.1 tenure track    36    5           2    
+ 3       1   3.9 tenure track    36    5           2    
+ 4       1   4.8 tenure track    36    5           2    
+ 5       2   4.6 tenured         59    3           0.667
+ 6       2   4.3 tenured         59    3           0.667
+ 7       2   2.8 tenured         59    3           0.667
+ 8       3   4.1 tenured         51    3.33        1.33 
+ 9       3   3.4 tenured         51    3.33        1.33 
+10       4   4.5 tenured         40    3.17        1    
+# … with 439 more rows</code></pre>
+<ol start="2" type="1">
+<li>For each professor (uniquely identified by <code>prof_id</code>), use a <code>group_by()</code> paired with <code>summarize()</code> to find the sample size, mean, and standard deviation of evaluation scores. Then include only the top 5 and bottom 5 professors in terms of mean scores in the final data frame.</li>
+</ol>
+<!-- -->
+<pre><code># calculate requested summary statistics
+prof_scores &lt;- evals |&gt;
+  # drop rows with NAs for score
+  drop_na(score) |&gt;
+  group_by(prof_id) |&gt;
+  summarize(
+    mean_score = mean(score, na.rm = TRUE),
+    sd_score = sd(score, na.rm = TRUE),
+    sample_size = n()
+  ) |&gt;
+  # sort rows by mean_score from high to low
+  arrange(desc(mean_score))
+
+# need to get top 5 and bottom 5 rows for each in a single data frame
+bind_rows(
+  slice_head(.data = prof_scores, n = 5),
+  slice_tail(.data = prof_scores, n = 5)
+)
+
+# A tibble: 10 × 4
+   prof_id mean_score sd_score sample_size
+     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;
+ 1      85       4.87   0.150            7
+ 2      73       4.82   0.0447           5
+ 3      71       4.81   0.179           10
+ 4      52       4.74   0.113            7
+ 5      50       4.73   0.163            6
+ 6      15       3.18   0.189            4
+ 7      60       3.13   0.208            3
+ 8      69       3     NA                1
+ 9      68       2.67   0.379            3
+10      30       2.3   NA                1</code></pre>
+<section id="footnotes-1" class="level2">
+<h2 class="anchored" data-anchor-id="footnotes-1"><strong>Footnotes</strong></h2>
+<ol type="1">
+<li><p>Source: Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, 2005 and <a href="https://www.openintro.org/data/index.php?data=evals">OpenIntro</a>.<a href="https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fnref1">↩︎</a></p></li>
+<li><p>From <a href="https://dplyr.tidyverse.org/articles/dplyr.html">dplyr vignette</a><a href="https://info2950.infosci.cornell.edu/ae/ae-03-wrangling-evals-A.html#fnref2">↩︎</a></p></li>
+</ol>
+</section>
+</section>
+<section id="ae-04-joining-prognosticators" class="level1">
+<h1>AE 04: Joining prognosticators</h1>
+<pre><code>library(tidyverse)
+library(scales)
+
+seers &lt;- read_csv("data/prognosticators.csv")
+weather &lt;- read_csv("data/weather-region.csv")</code></pre>
+<section id="working-with-multiple-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-multiple-data-frames">Working with multiple data frames</h2>
+<p>Often instead of being provided the data you need for your analysis in a single data frame, you will need to bring information from multiple datasets together into a data frame yourself. These datasets will be linked to each other via a column (usually an identifier, something that links the two datasets together) that you can use to join them together.</p>
+<p>There are many possible types of joins. All have the format <code>something_join(x, y)</code>.</p>
+<pre><code>superheroes &lt;- tribble(
+  ~name, ~alignment, ~gender, ~publisher,
+  "Magneto", "bad", "male", "Marvel",
+  "Batman", "good", "male", "DC",
+  "Sabrina", "good", "female", "Archie Comics"
+)
+
+publishers &lt;- tribble(
+  ~publisher, ~yr_founded,
+  "DC", 1934,
+  "Marvel", 1939,
+  "Image", 1992
+)
+
+superheroes
+
+# A tibble: 3 × 4
+  name    alignment gender publisher    
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        
+1 Magneto bad       male   Marvel       
+2 Batman  good      male   DC           
+3 Sabrina good      female Archie Comics
+
+publishers
+
+# A tibble: 3 × 2
+  publisher yr_founded
+  &lt;chr&gt;          &lt;dbl&gt;
+1 DC              1934
+2 Marvel          1939
+3 Image           1992</code></pre>
+<p>We will demonstrate each of the joins on these small, toy datasets.</p>
+<section id="inner_join-join-all-rows-from-x-where-there-are-matching-values-in-y" class="level3">
+<h3 class="anchored" data-anchor-id="inner_join-join-all-rows-from-x-where-there-are-matching-values-in-y"><code>inner_join()</code>: join all rows from <code>x</code> where there are matching values in <code>y</code></h3>
+<pre><code>inner_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 2 × 5
+  name    alignment gender publisher yr_founded
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;
+1 Magneto bad       male   Marvel          1939
+2 Batman  good      male   DC              1934</code></pre>
+</section>
+<section id="left_join-include-all-rows-from-x" class="level3">
+<h3 class="anchored" data-anchor-id="left_join-include-all-rows-from-x"><code>left_join()</code>: include all rows from <code>x</code></h3>
+<pre><code>left_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 3 × 5
+  name    alignment gender publisher     yr_founded
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;
+1 Magneto bad       male   Marvel              1939
+2 Batman  good      male   DC                  1934
+3 Sabrina good      female Archie Comics         NA</code></pre>
+</section>
+<section id="right_join-include-all-rows-from-y" class="level3">
+<h3 class="anchored" data-anchor-id="right_join-include-all-rows-from-y"><code>right_join()</code>: include all rows from <code>y</code></h3>
+<pre><code>right_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 3 × 5
+  name    alignment gender publisher yr_founded
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;
+1 Magneto bad       male   Marvel          1939
+2 Batman  good      male   DC              1934
+3 &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;   Image           1992</code></pre>
+</section>
+<section id="full_join-include-all-rows-in-x-or-y-use-this-one-sparingly" class="level3">
+<h3 class="anchored" data-anchor-id="full_join-include-all-rows-in-x-or-y-use-this-one-sparingly"><code>full_join()</code>: include all rows in <code>x</code> or <code>y</code> (use this one sparingly!!)</h3>
+<pre><code>full_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 4 × 5
+  name    alignment gender publisher     yr_founded
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;
+1 Magneto bad       male   Marvel              1939
+2 Batman  good      male   DC                  1934
+3 Sabrina good      female Archie Comics         NA
+4 &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;   Image               1992</code></pre>
+</section>
+<section id="semi_join-return-all-rows-from-x-with-match-in-y" class="level3">
+<h3 class="anchored" data-anchor-id="semi_join-return-all-rows-from-x-with-match-in-y"><code>semi_join()</code>: return all rows from <code>x</code> with match in <code>y</code></h3>
+<pre><code>semi_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 2 × 4
+  name    alignment gender publisher
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    
+1 Magneto bad       male   Marvel   
+2 Batman  good      male   DC       </code></pre>
+</section>
+<section id="anti_join-return-all-rows-from-x-without-a-match-in-y" class="level3">
+<h3 class="anchored" data-anchor-id="anti_join-return-all-rows-from-x-without-a-match-in-y"><code>anti_join()</code>: return all rows from <code>x</code> without a match in <code>y</code></h3>
+<pre><code>anti_join(x = superheroes, y = publishers)
+
+Joining, by = "publisher"
+
+# A tibble: 1 × 4
+  name    alignment gender publisher    
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        
+1 Sabrina good      female Archie Comics</code></pre>
+<p><strong>Question: How do the join functions above know to join <code>x</code> and <code>y</code> by <code>value</code>? <em>Hint: Examine the column names to find out.</em></strong></p>
+<pre><code>names(superheroes)
+
+[1] "name"      "alignment" "gender"    "publisher"
+
+names(publishers)
+
+[1] "publisher"  "yr_founded"</code></pre>
+</section>
+</section>
+<section id="prognosticator-success" class="level2">
+<h2 class="anchored" data-anchor-id="prognosticator-success">Prognosticator success</h2>
+<p>We previously examined the accuracy rate of Groundhog Day prognosticators.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fn1">1</a></sup> Today we want to work with the original dataset to understand how those accuracy metrics were generated and answer the question: <strong>How does prognosticator accuracy vary by climatic region?</strong></p>
+<p>Let’s start by looking at the <code>seers</code> data frame.</p>
+<pre><code>glimpse(seers)
+
+Rows: 1,457
+Columns: 7
+$ name            &lt;chr&gt; "Punxsutawney Phil", "Punxsutawney Phil", "Punxsutawne…
+$ forecaster_type &lt;chr&gt; "Groundhog", "Groundhog", "Groundhog", "Groundhog", "G…
+$ alive           &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+$ town            &lt;chr&gt; "Punxsutawney", "Punxsutawney", "Punxsutawney", "Punxs…
+$ state           &lt;chr&gt; "PA", "PA", "PA", "PA", "PA", "PA", "PA", "PA", "PA", …
+$ year            &lt;dbl&gt; 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, …
+$ prediction      &lt;chr&gt; "Long Winter", "Long Winter", "Early Spring", "Early S…</code></pre>
+<p>We have the predictions, but our goal is to make a visualization by climate region.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fn2">2</a></sup></p>
+<p><img src="https://info2950.infosci.cornell.edu/ae/images/climate-regions.gif" class="img-fluid" alt="The nine regions as defined by the National Climatic Data Center and regularly used in climate summaries."></p>
+<p>Let’s take a look at the weather data frame.</p>
+<pre><code>glimpse(weather)
+
+Rows: 5,424
+Columns: 13
+$ region         &lt;chr&gt; "Northeast", "Northeast", "Northeast", "Northeast", "No…
+$ state_abb      &lt;chr&gt; "CT", "CT", "CT", "CT", "CT", "CT", "CT", "CT", "CT", "…
+$ id             &lt;dbl&gt; 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, …
+$ year           &lt;dbl&gt; 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917, 1…
+$ avg_temp       &lt;dbl&gt; 28.00, 29.20, 24.90, 23.15, 28.05, 22.05, 27.50, 21.55,…
+$ temp_hist      &lt;dbl&gt; 25.58333, 26.09000, 26.16667, 25.85667, 25.63333, 25.52…
+$ temp_hist_sd   &lt;dbl&gt; 4.245360, 4.241218, 4.103158, 4.124311, 3.907804, 4.016…
+$ temp_sd        &lt;dbl&gt; 4.118598, 4.118598, 4.118598, 4.118598, 4.118598, 4.118…
+$ precip         &lt;dbl&gt; 4.005, 2.520, 2.810, 3.570, 3.765, 2.920, 2.330, 3.425,…
+$ precip_hist    &lt;dbl&gt; 3.476667, 3.526667, 3.378000, 3.411000, 3.446333, 3.352…
+$ precip_hist_sd &lt;dbl&gt; 1.1784719, 1.2081292, 1.1442431, 1.1620681, 1.2039309, …
+$ precip_sd      &lt;dbl&gt; 0.9641827, 0.9641827, 0.9641827, 0.9641827, 0.9641827, …
+$ outcome        &lt;chr&gt; "Early Spring", "Early Spring", "Early Spring", "Late W…</code></pre>
+<ul>
+<li><p><strong>Your turn (2 minutes):</strong></p>
+<ul>
+<li><p>Which variable(s) will we use to join the <code>seers</code> and <code>weather</code> data frames?</p></li>
+<li><p>We want to keep all rows and columns from <code>seers</code> and add columns for corresponding weather data. Which join function should we use?</p></li>
+</ul></li>
+<li><p><strong>Demo:</strong> Join the two data frames and assign the joined data frame to <code>seers_weather</code>.</p></li>
+</ul>
+<!-- -->
+<pre><code>seers_weather &lt;- inner_join(
+  x = seers, y = weather,
+  by = c("state" = "state_abb", "year")
+)</code></pre>
+<ul>
+<li><strong>Demo:</strong> Take a look at the updated <code>seers</code> data frame. First we need to calculate for each prediction whether or not the prognistication was correct.</li>
+</ul>
+<!-- -->
+<pre><code>seers_weather &lt;- seers_weather |&gt;
+  mutate(correct_pred = prediction == outcome)</code></pre>
+<ul>
+<li><strong>Demo:</strong> Calculate the accuracy rate (we’ll call it <code>preds_rate</code>) for weather predictions using the <code>summarize()</code> function in <strong>dplyr</strong>. Note that the function for calculating the mean is <code>mean()</code> in R.</li>
+</ul>
+<!-- -->
+<pre><code>seers_weather |&gt; # start with seers data frame
+  group_by(region) |&gt; # group by region
+  summarize(preds_rate = mean(correct_pred)) # calculate accuracy rate
+
+# A tibble: 9 × 2
+  region                      preds_rate
+  &lt;chr&gt;                            &lt;dbl&gt;
+1 Northeast                        0.299
+2 Northern Rockies and Plains      0.488
+3 Northwest                        0.214
+4 Ohio Valley                      0.5  
+5 South                            0.438
+6 Southeast                        0.484
+7 Southwest                        0.379
+8 Upper Midwest                    0.386
+9 West                             0    </code></pre>
+<p><img src="images/image-853001242.png" class="img-fluid"></p>
+<ul>
+<li><strong>Your turn (time permitting):</strong> Make any other changes you would like to improve it.</li>
+</ul>
+<!-- -->
+<pre><code># add your code here</code></pre>
+</section>
+<section id="footnotes-2" class="level2">
+<h2 class="anchored" data-anchor-id="footnotes-2"><strong>Footnotes</strong></h2>
+<ol type="1">
+<li><p>See <a href="https://info2950.infosci.cornell.edu/ae/ae-02-prognosticators-A.html">ae-02</a><a href="https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fnref1">↩︎</a></p></li>
+<li><p>Source: <a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/regional_monitoring/regions.shtml">National Weather Service Climate Prediction Center</a><a href="https://info2950.infosci.cornell.edu/ae/ae-04-joining-prognosticators-A.html#fnref2">↩︎</a></p></li>
+</ol>
+</section>
+</section>
+<section id="ae-05-pivoting-cornell-degrees" class="level1">
+<h1>AE 05: Pivoting Cornell Degrees</h1>
+<section id="goal" class="level2">
+<h2 class="anchored" data-anchor-id="goal">Goal</h2>
+<p>Our ultimate goal in this application exercise is to make the following data visualization.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="null.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><img src="https://info2950.infosci.cornell.edu/ae/images/cornell-degree-plot-final.png" class="img-fluid figure-img" alt="Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020."></figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><strong>Your turn (3 minutes):</strong> Take a close look at the plot and describe what it shows in 2-3 sentences.</li>
+</ul>
+<p><em>Add your response here.</em></p>
+</section>
+<section id="data-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-1">Data</h2>
+<p>The data come from the <a href="https://collegescorecard.ed.gov/">Department of Education’s College Scorecard</a>.</p>
+<p>They make the data available through online dashboards and an API, but I’ve prepared the data for you in a CSV file. Let’s load that in.</p>
+<pre><code>library(tidyverse)
+library(scales)
+
+cornell_deg &lt;- read_csv("data/cornell-degrees.csv")</code></pre>
+<p>And let’s take a look at the data.</p>
+<pre><code>cornell_deg
+
+# A tibble: 6 × 21
+  field_…¹ `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008` `2009` `2010`
+  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 academi… 0.239  0.290  0.173  0.161   0.168 0.170  0.181  0.183  0.181  0.179 
+2 academi… 0.112  0.0979 0.110  0.198   0.157 0.168  0.151  0.136  0.148  0.129 
+3 academi… 0.0859 0.0745 0.0463 0.0327  0.032 0.0221 0.0263 0.0262 0.0264 0.0297
+4 academi… 0.071  0.0709 0.112  0.100   0.109 0.107  0.116  0.122  0.117  0.12  
+5 academi… 0      0      0.122  0.112   0.109 0.110  0.126  0.134  0.128  0.12  
+6 academi… 0.161  0.160  0.105  0.0973  0.113 0.099  0.102  0.0975 0.0983 0.0994
+# … with 10 more variables: `2011` &lt;dbl&gt;, `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;,
+#   `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;, `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;,
+#   `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, and abbreviated variable name ¹​field_of_study</code></pre>
+<p>The dataset has 6 rows and 21 columns. The first column (variable) is the <code>field_of_study</code>, which are the 6 most frequent fields of study for students graduating in 2020.<sup><a href="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#fn1">1</a></sup> The remaining columns show the proportion of degrees awarded in each year from 2001-2020.</p>
+<ul>
+<li><p><strong>Your turn (4 minutes):</strong> Take a look at the plot we aim to make and sketch the data frame we need to make the plot. Determine what each row and each column of the data frame should be. <em>Hint:</em> We need data to be in columns to map to <code>aes</code>thetic elements of the plot.</p>
+<ul>
+<li><p>Columns: <code>year</code>, <code>pct</code> , <code>field_of_study</code></p></li>
+<li><p>Rows: Combination of year and field of study</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="pivoting" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting">Pivoting</h2>
+<ul>
+<li><strong>Demo:</strong> Pivot the <code>cornell_deg</code> data frame <em>longer</em> such that each row represents a field of study / year combination and <code>year</code> and <code>n</code>umber of graduates for that year are columns in the data frame.</li>
+</ul>
+<!-- -->
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    values_to = "pct"
+  )
+
+# A tibble: 120 × 3
+   field_of_study                           year    pct
+   &lt;chr&gt;                                    &lt;chr&gt; &lt;dbl&gt;
+ 1 academics.program_percentage.engineering 2001  0.239
+ 2 academics.program_percentage.engineering 2002  0.290
+ 3 academics.program_percentage.engineering 2003  0.173
+ 4 academics.program_percentage.engineering 2004  0.161
+ 5 academics.program_percentage.engineering 2005  0.168
+ 6 academics.program_percentage.engineering 2006  0.170
+ 7 academics.program_percentage.engineering 2007  0.181
+ 8 academics.program_percentage.engineering 2008  0.183
+ 9 academics.program_percentage.engineering 2009  0.181
+10 academics.program_percentage.engineering 2010  0.179
+# … with 110 more rows</code></pre>
+<ul>
+<li><strong>Question:</strong> What is the type of the <code>year</code> variable? Why? What should it be?</li>
+</ul>
+<p>It’s a character (<code>chr</code>) variable since the information came from the columns of the original data frame and R cannot know that these character strings represent years. The variable type should be numeric.</p>
+<ul>
+<li><strong>Demo:</strong> Start over with pivoting, and this time also make sure <code>year</code> is a numerical variable in the resulting data frame.</li>
+</ul>
+<!-- -->
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  )
+
+# A tibble: 120 × 3
+   field_of_study                            year   pct
+   &lt;chr&gt;                                    &lt;dbl&gt; &lt;dbl&gt;
+ 1 academics.program_percentage.engineering  2001 0.239
+ 2 academics.program_percentage.engineering  2002 0.290
+ 3 academics.program_percentage.engineering  2003 0.173
+ 4 academics.program_percentage.engineering  2004 0.161
+ 5 academics.program_percentage.engineering  2005 0.168
+ 6 academics.program_percentage.engineering  2006 0.170
+ 7 academics.program_percentage.engineering  2007 0.181
+ 8 academics.program_percentage.engineering  2008 0.183
+ 9 academics.program_percentage.engineering  2009 0.181
+10 academics.program_percentage.engineering  2010 0.179
+# … with 110 more rows</code></pre>
+<ul>
+<li><strong>Demo:</strong> In our plot the fields of study are the name of the field. This information is in our dataset, in the <code>field_of_study</code> column, but this column also has additional characters we don’t need. Create a new column called <code>field</code> with levels Engineering, Business Marketing, Computer, Biological, Agriculture, and Social Science (in this order) based on <code>field_of_study</code>. Do this by adding on to your pipeline from earlier.</li>
+</ul>
+<!-- -->
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field)
+
+# A tibble: 120 × 3
+   field        year   pct
+   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Engineering  2001 0.239
+ 2 Engineering  2002 0.290
+ 3 Engineering  2003 0.173
+ 4 Engineering  2004 0.161
+ 5 Engineering  2005 0.168
+ 6 Engineering  2006 0.170
+ 7 Engineering  2007 0.181
+ 8 Engineering  2008 0.183
+ 9 Engineering  2009 0.181
+10 Engineering  2010 0.179
+# … with 110 more rows</code></pre>
+<ul>
+<li><strong>Your turn (5 minutes):</strong> Now we start making our plot, but let’s not get too fancy right away. Create the following plot, which will serve as the “first draft” on the way to our <a href="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#goal">Goal</a>. Do this by adding on to your pipeline from earlier.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="null.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><img src="https://info2950.infosci.cornell.edu/ae/images/cornell-degree-plot-draft.png" class="img-fluid figure-img" alt="Line plot of numbers of Cornell degrees awarded in six fields of study from 2001 to 2020."></figcaption><p></p>
+</figure>
+</div>
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field) |&gt;
+  ggplot(aes(x = year, y = pct, color = field)) +
+  geom_point() +
+  geom_line()</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-draft-1.png" class="img-fluid"></p>
+<ul>
+<li><p><strong>Your turn (4 minutes):</strong> What aspects of the plot need to be updated to go from the draft you created above to the <a href="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#goal">Goal</a> plot at the beginning of this application exercise.</p>
+<ul>
+<li><p>x-axis scale: need to go from 2000 to 2020 in increments of 4 years</p></li>
+<li><p>y-axis scale: percentage labeling</p></li>
+<li><p>line colors</p></li>
+<li><p>axis labels: title, subtitle, x, y, caption</p></li>
+<li><p>theme</p></li>
+<li><p>legend position and border</p></li>
+</ul></li>
+<li><p><strong>Demo:</strong> Update x-axis scale such that the years displayed go from 2000 to 2020 in increments of 4 years. Update y-axis scale so it uses percentage formatting. Do this by adding on to your pipeline from earlier.</p></li>
+</ul>
+<!-- -->
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field) |&gt;
+  ggplot(aes(x = year, y = pct, color = field)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+  scale_y_continuous(labels = label_percent())</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/scales-1.png" class="img-fluid"></p>
+<ul>
+<li><strong>Demo:</strong> Update line colors using the <code>scale_color_colorblind()</code> palette from <strong>ggthemes</strong>. Once again, do this by adding on to your pipeline from earlier.</li>
+</ul>
+<!-- -->
+<pre><code>library(ggthemes)
+
+cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field) |&gt;
+  ggplot(aes(x = year, y = pct, color = field)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+  scale_y_continuous(labels = label_percent()) +
+  scale_color_colorblind()</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/color-palette-1.png" class="img-fluid"></p>
+<ul>
+<li><strong>Your turn (4 minutes):</strong> Update the plot labels (<code>title</code>, <code>subtitle</code>, <code>x</code>, <code>y</code>, and <code>caption</code>) and use <code>theme_minimal()</code>. Once again, do this by adding on to your pipeline from earlier.</li>
+</ul>
+<!-- -->
+<pre><code>cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field) |&gt;
+  ggplot(aes(x = year, y = pct, color = field)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+  scale_color_colorblind() +
+  scale_y_continuous(labels = label_percent()) +
+  labs(
+    x = "Graduation year",
+    y = "Percent of degrees awarded",
+    color = "Field of study",
+    title = "Cornell University degrees awarded from 2001-2020",
+    subtitle = "Only the top six fields as of 2020",
+    caption = "Source: Department of Education\nhttps://collegescorecard.ed.gov/"
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-labels-1.png" class="img-fluid"></p>
+<ul>
+<li><strong>Demo:</strong> Finally, set <code>fig-width: 7</code> and <code>fig-height: 5</code> for your plot in the chunk options.</li>
+</ul>
+<!-- -->
+<pre><code>#| fig-width: 7
+#| fig-height: 5
+
+cornell_deg |&gt;
+  pivot_longer(
+    cols = -field_of_study,
+    names_to = "year",
+    names_transform = parse_number,
+    values_to = "pct"
+  ) |&gt;
+  separate(col = field_of_study, into = c(NA, NA, "field"), sep = "\\.") |&gt;
+  mutate(
+    field = str_replace(string = field, pattern = "_", replacement = " "),
+    field = str_to_title(string = field),
+    field = fct_relevel(
+      field, "Engineering", "Business Marketing", "Computer",
+      "Biological", "Agriculture", "Social Science"
+    )
+  ) |&gt;
+  relocate(field) |&gt;
+  ggplot(aes(x = year, y = pct, color = field)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(limits = c(2000, 2020), breaks = seq(2000, 2020, 4)) +
+  scale_color_colorblind() +
+  scale_y_continuous(labels = label_percent()) +
+  labs(
+    x = "Graduation year",
+    y = "Percent of degrees awarded",
+    color = "Field of study",
+    title = "Cornell University degrees awarded from 2001-2020",
+    subtitle = "Only the top six fields as of 2020",
+    caption = "Source: Department of Education\nhttps://collegescorecard.ed.gov/"
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A_files/figure-html/plot-final-1.png" class="img-fluid"></p>
+</section>
+<section id="footnotes-3" class="level2">
+<h2 class="anchored" data-anchor-id="footnotes-3"><strong>Footnotes</strong></h2>
+<ol type="1">
+<li>For the sake of application, I omitted the other 32 possible fields of study.<a href="https://info2950.infosci.cornell.edu/ae/ae-05-pivoting-cornell-degrees-A.html#fnref1">↩︎</a></li>
+</ol>
+</section>
+</section>
+<section id="ae-06-data-types-and-classes" class="level1">
+<h1>AE 06: Data types and classes</h1>
+<section id="packages-1" class="level2">
+<h2 class="anchored" data-anchor-id="packages-1">Packages</h2>
+<ul>
+<li><p><strong>tidyverse</strong>: For data import, wrangling, and visualization.</p></li>
+<li><p><strong>skimr</strong>: For summarizing the entire data frame at once.</p></li>
+<li><p><strong>scales</strong>: For better axis labels.</p></li>
+</ul>
+<!-- -->
+<pre><code>library(tidyverse)
+library(skimr)
+library(scales)</code></pre>
+</section>
+<section id="type-coercion" class="level2">
+<h2 class="anchored" data-anchor-id="type-coercion">Type coercion</h2>
+<ul>
+<li><p><strong>Demo:</strong> Determine the type of the following vector. And then, change the type to numeric.</p>
+<pre><code>x &lt;- c("1", "2", "3")
+typeof(x)
+
+[1] "character"
+
+as.numeric(x)
+
+[1] 1 2 3
+
+parse_number(x)
+
+[1] 1 2 3</code></pre></li>
+<li><p><strong>Demo:</strong> Once again, determine the type of the following vector. And then, change the type to numeric. What’s different than the previous exercise?</p>
+<pre><code>y &lt;- c("a", "b", "c")
+typeof(y)
+
+[1] "character"
+
+as.numeric(y)
+
+Warning: NAs introduced by coercion
+
+[1] NA NA NA
+
+parse_number(y)
+
+Warning: 3 parsing failures.
+row col expected actual
+  1  -- a number      a
+  2  -- a number      b
+  3  -- a number      c
+
+[1] NA NA NA
+attr(,"problems")
+# A tibble: 3 × 4
+    row   col expected actual
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; 
+1     1    NA a number a     
+2     2    NA a number b     
+3     3    NA a number c     </code></pre></li>
+<li><p><strong>Demo:</strong> Once again, determine the type of the following vector. And then, change the type to numeric. What’s different than the previous exercise?</p>
+<pre><code>z &lt;- c("1", "2", "three")
+typeof(z)
+
+[1] "character"
+
+as.numeric(z)
+
+Warning: NAs introduced by coercion
+
+[1]  1  2 NA
+
+parse_number(z)
+
+Warning: 1 parsing failure.
+row col expected actual
+  3  -- a number  three
+
+[1]  1  2 NA
+attr(,"problems")
+# A tibble: 1 × 4
+    row   col expected actual
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; 
+1     3    NA a number three </code></pre></li>
+<li><p><strong>Demo:</strong> Suppose you conducted a survey where you asked people how many cars their household owns collectively. And the answers are as follows:</p>
+<pre><code>survey_results &lt;- tibble(cars = c(1, 2, "three"))
+survey_results
+
+# A tibble: 3 × 1
+  cars 
+  &lt;chr&gt;
+1 1    
+2 2    
+3 three</code></pre>
+<p>This is annoying because of that third survey taker who just had to go and type out the number instead of providing as a numeric value. So now you need to update the <code>cars</code> variable to be numeric. You do the following</p>
+<pre><code>survey_results |&gt;
+  mutate(cars = as.numeric(cars))
+
+Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
+
+# A tibble: 3 × 1
+   cars
+  &lt;dbl&gt;
+1     1
+2     2
+3    NA</code></pre>
+<p>And now things are even more annoying because you get a warning <code>NAs introduced by coercion</code> that happened while computing <code>cars = as.numeric(cars)</code> and the response from the third survey taker is now an <code>NA</code> (you lost their data). Fix your <code>mutate()</code> call to avoid this warning.</p>
+<pre><code>survey_results |&gt;
+  mutate(
+    cars = if_else(cars == "three", "3", cars),
+    cars = as.numeric(cars)
+    )
+
+# A tibble: 3 × 1
+   cars
+  &lt;dbl&gt;
+1     1
+2     2
+3     3
+
+# or with parse_number()
+survey_results |&gt;
+  mutate(
+    cars = if_else(cars == "three", "3", cars),
+    cars = parse_number(cars)
+    )
+
+# A tibble: 3 × 1
+   cars
+  &lt;dbl&gt;
+1     1
+2     2
+3     3</code></pre></li>
+<li><p>Your turn: First, guess the type of the vector. Then, check if you guessed right. I’ve done the first one for you, you’ll see that it’s helpful to check the type of each element of the vector first.</p>
+<ul>
+<li><p><code>c(1, 1L, "C")</code></p>
+<pre><code>v1 &lt;- c(1, 1L, "C")
+
+# to help you guess
+typeof(1)
+
+[1] "double"
+
+typeof(1L)
+
+[1] "integer"
+
+typeof("C")
+
+[1] "character"
+
+# to check after you guess
+typeof(v1)
+
+[1] "character"</code></pre></li>
+<li><p><code>c(1L / 0, "A")</code></p>
+<pre><code>v2 &lt;- c(1L / 0, "A")
+
+# to help you guess
+typeof(1L)
+
+[1] "integer"
+
+typeof(0)
+
+[1] "double"
+
+typeof(1L / 0)
+
+[1] "double"
+
+typeof("A")
+
+[1] "character"
+
+# to check after you guess
+typeof(v2)
+
+[1] "character"</code></pre></li>
+<li><p><code>c(1:3, 5)</code></p>
+<pre><code>v3 &lt;- c(1:3, 5)
+
+# to help you guess
+typeof(1:3)
+
+[1] "integer"
+
+typeof(5)
+
+[1] "double"
+
+# to check after you guess
+typeof(v3)
+
+[1] "double"</code></pre></li>
+<li><p><code>c(3, "3+")</code></p>
+<pre><code>v4 &lt;- c(3, "3+")
+
+# to help you guess
+typeof(3)
+
+[1] "double"
+
+typeof("3+")
+
+[1] "character"
+
+# to check after you guess
+typeof(v4)
+
+[1] "character"</code></pre></li>
+<li><p><code>c(NA, TRUE)</code></p>
+<pre><code>v5 &lt;- c(NA, TRUE)
+
+# to help you guess
+typeof(NA)
+
+[1] "logical"
+
+typeof(TRUE)
+
+[1] "logical"
+
+# to check after you guess
+typeof(v5)
+
+[1] "logical"</code></pre></li>
+</ul></li>
+</ul>
+</section>
+<section id="hotel-bookings" class="level2">
+<h2 class="anchored" data-anchor-id="hotel-bookings">Hotel bookings</h2>
+<pre><code># From TidyTuesday: https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md
+
+hotels &lt;- read_csv("data/hotels.csv")
+skim(hotels)  # much more useful to run interactively in the console</code></pre>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Data summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Name</td>
+<td>hotels</td>
+</tr>
+<tr class="even">
+<td>Number of rows</td>
+<td>119390</td>
+</tr>
+<tr class="odd">
+<td>Number of columns</td>
+<td>32</td>
+</tr>
+<tr class="even">
+<td>_______________________</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Column type frequency:</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>character</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>Date</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>numeric</td>
+<td>18</td>
+</tr>
+<tr class="odd">
+<td>________________________</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Group variables</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hotel</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">arrival_date_month</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">meal</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">market_segment</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distribution_channel</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">reserved_room_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">assigned_room_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">deposit_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">334</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">company</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">353</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">customer_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">reservation_status</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">reservation_status_date</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2014-10-17</td>
+<td style="text-align: left;">2017-09-14</td>
+<td style="text-align: left;">2016-08-07</td>
+<td style="text-align: right;">926</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">is_canceled</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">▇▁▁▁▅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lead_time</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">104.01</td>
+<td style="text-align: right;">106.86</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">69.00</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">737</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">arrival_date_year</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2016.16</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">2015.00</td>
+<td style="text-align: right;">2016.00</td>
+<td style="text-align: right;">2016.00</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: left;">▃▁▇▁▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">arrival_date_week_number</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27.17</td>
+<td style="text-align: right;">13.61</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">16.00</td>
+<td style="text-align: right;">28.00</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">▅▇▇▇▅</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">arrival_date_day_of_month</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">15.80</td>
+<td style="text-align: right;">8.78</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">8.00</td>
+<td style="text-align: right;">16.00</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stays_in_weekend_nights</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stays_in_week_nights</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.50</td>
+<td style="text-align: right;">1.91</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">adults</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.86</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">children</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">babies</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">is_repeated_guest</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">previous_cancellations</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">previous_bookings_not_canceled</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">booking_changes</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">days_in_waiting_list</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.32</td>
+<td style="text-align: right;">17.59</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">391</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">adr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">101.83</td>
+<td style="text-align: right;">50.54</td>
+<td style="text-align: right;">-6.38</td>
+<td style="text-align: right;">69.29</td>
+<td style="text-align: right;">94.58</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">5400</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">required_car_parking_spaces</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">total_of_special_requests</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question:</strong> Take a look at the the following visualization. How are the months ordered? What would be a better order?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="null.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><img src="https://info2950.infosci.cornell.edu/ae/images/hotel-prices-months.png" class="img-fluid figure-img"></figcaption><p></p>
+</figure>
+</div>
+<p><strong>Demo:</strong> Reorder the months on the x-axis (levels of <code>arrival_date_month</code>) in a way that makes more sense. You will want to use a function from the <strong>forcats</strong> package, see <a href="https://forcats.tidyverse.org/reference/">https://forcats.tidyverse.org/reference/index.html</a> for inspiration and help.</p>
+<pre><code>hotels |&gt;
+  mutate(
+    # convert to factor, use labels argument to create short versions
+    arrival_date_month = factor(
+      x = arrival_date_month,
+      levels = month.name,
+      labels = month.abb
+    )
+  ) |&gt;
+  group_by(hotel, arrival_date_month) |&gt;
+  summarize(mean_adr = mean(adr), .groups = "drop") |&gt;
+  ggplot(mapping = aes(
+    x = arrival_date_month,
+    y = mean_adr,
+    group = hotel,
+    color = hotel
+  )) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    x = "Arrival month",
+    y = "Mean ADR (average daily rate)",
+    title = "Comparison of resort and city hotel prices across months",
+    subtitle = "Resort hotel prices soar in the summer while city hotel prices remain relatively constant throughout the year",
+    color = "Hotel type"
+  )</code></pre>
+<p><img src="https://info2950.infosci.cornell.edu/ae/ae-06-data-types-classes-A_files/figure-html/hotels-plot-1.png" class="img-fluid"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
